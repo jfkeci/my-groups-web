@@ -1,4 +1,4 @@
-# project-jfkeci
+# my-groups-web
 
 ## Project setup
 ```

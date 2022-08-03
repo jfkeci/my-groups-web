@@ -1,3 +1,4 @@
-module.exports = {
-    publicPath: '/project-jfkeci/'
-}
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true
+})
