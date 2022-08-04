@@ -1,32 +1,23 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <MainNavbar />
+    <b-container class="bv-example-row pt-2">
+      <b-row class="text-center">
+        <b-col>Left Sidebar</b-col>
+        <b-col cols="8">
+          <router-view />
+        </b-col>
+        <b-col>Right Sidebar</b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import MainNavbar from "./components/headers/MainNavbar.vue";
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+  name: "App",
+  components: { MainNavbar },
+};
+</script>

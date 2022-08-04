@@ -12,6 +12,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
+Vue.prototype.$dbg = true;
+
 Vue.config.productionTip = false;
 
 new Vue({
