@@ -77,7 +77,7 @@ export default {
     return {
       form: {
         username: "jfkeci",
-        email: "jfkeci@test.com",
+        email: "jfkeci@gmail.com",
         password: "test1234",
         confirmPassword: "test1234",
         firstName: "filip",
@@ -93,7 +93,7 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      console.log(this.form);
+      this.$store.dispatch("registerUser", this.form);
     },
   },
 };

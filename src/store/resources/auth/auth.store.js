@@ -7,7 +7,7 @@ export default {
     token: null,
   },
   mutations: {
-    async setToken(state, token) {
+    setToken(state, token) {
       state.token = token;
 
       token
@@ -16,7 +16,16 @@ export default {
 
       axios.defaults.headers.common = { Authorization: `bearer ${token}` };
     },
+    setUser(state, user) {
+      state.user = user;
+
+      user
+        ? localStorage.setItem("user", user)
+        : localStorage.removeItem("user");
+    },
     logout({ state, commit }) {
+      state.user = null;
+      localStorage.removeItem("user");
       state.token = null;
       localStorage.removeItem("token");
 
