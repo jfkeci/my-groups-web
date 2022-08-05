@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset">
+    <b-form @submit="onSubmit">
       <b-form-group id="input-group-1" label="Email" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -42,20 +42,13 @@ export default {
   },
   created() {
     if (this.isLoggedIn) {
-      console.log("DONT SHOW LOGIN");
       this.$store.commit("setView", "/dashboard");
     }
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      console.log(this.form);
       this.$store.dispatch("loginUser", this.form);
-    },
-    onReset(event) {
-      event.preventDefault();
-      this.form.email = "";
-      this.form.password = "";
     },
   },
 };
