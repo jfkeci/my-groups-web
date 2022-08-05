@@ -35,15 +35,22 @@ export default {
   data() {
     return {
       form: {
-        email: "jfkeci@test.com",
+        email: "jfkeci@gmail.com",
         password: "test1234",
       },
     };
+  },
+  created() {
+    if (this.isLoggedIn) {
+      console.log("DONT SHOW LOGIN");
+      this.$store.commit("setView", "/dashboard");
+    }
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
       console.log(this.form);
+      this.$store.dispatch("loginUser", this.form);
     },
     onReset(event) {
       event.preventDefault();

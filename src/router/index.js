@@ -2,10 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
+import DashboardView from "../views/DashboardView.vue";
 import UserLoginView from "../views/auth/UserLoginView.vue";
-import UserRegisterView from "../views/auth/UserRegisterView.vue";
 import UserProfileView from "../views/auth/UserProfileView.vue";
-import UserLogoutView from "../views/auth/UserLogoutView.vue";
+import UserRegisterView from "../views/auth/UserRegisterView.vue";
 
 Vue.use(VueRouter);
 
@@ -31,14 +31,14 @@ const routes = [
     component: UserProfileView,
   },
   {
-    path: "/logout",
-    name: "logout",
-    component: UserLogoutView,
-  },
-  {
     path: "/about",
     name: "about",
     component: AboutView,
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: DashboardView,
   },
 ];
 

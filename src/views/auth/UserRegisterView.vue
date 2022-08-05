@@ -4,8 +4,7 @@
       <b-form-group id="input-group-1" label="Username" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="form.email"
-          type="email"
+          v-model="form.username"
           placeholder="Email"
           required
         ></b-form-input>
@@ -85,6 +84,11 @@ export default {
         lastName: "kecilobas",
       },
     };
+  },
+  created() {
+    if (this.isLoggedIn) {
+      this.$store.commit("setView", "/dashboard");
+    }
   },
   methods: {
     onSubmit(event) {

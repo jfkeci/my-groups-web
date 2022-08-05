@@ -29,10 +29,18 @@
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item to="/profile">Profile</b-dropdown-item>
-            <b-dropdown-item to="/logout">Logout</b-dropdown-item>
-            <b-dropdown-item to="/login">Login</b-dropdown-item>
-            <b-dropdown-item to="/register">Register</b-dropdown-item>
+            <b-dropdown-item v-if="isLoggedIn" to="/profile"
+              >Profile</b-dropdown-item
+            >
+            <b-dropdown-item v-if="isLoggedIn" @click="logout"
+              >Logout</b-dropdown-item
+            >
+            <b-dropdown-item v-if="!isLoggedIn" to="/login"
+              >Login</b-dropdown-item
+            >
+            <b-dropdown-item v-if="!isLoggedIn" to="/register"
+              >Register</b-dropdown-item
+            >
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -43,6 +51,27 @@
 <script>
 export default {
   name: "MainNavbar",
+  computed: {
+    view() {
+      return this.$store.getters.getView;
+    },
+  },
+  watch: {
+    isLoggedIn() {
+      console.log("this.isLoggedIn", this.isLoggedIn);
+    },
+    view() {
+      if (this.view) {
+        this.$router.push(this.view);
+      }
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      this.$store.commit("setToken", false);
+    },
+  },
 };
 </script>
 
