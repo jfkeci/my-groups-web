@@ -6,6 +6,7 @@ import DashboardView from "../views/DashboardView.vue";
 import UserLoginView from "../views/auth/UserLoginView.vue";
 import UserProfileView from "../views/auth/UserProfileView.vue";
 import UserRegisterView from "../views/auth/UserRegisterView.vue";
+import CreateCommunityView from "../views/community/CreateCommunityView.vue";
 
 Vue.use(VueRouter);
 
@@ -36,9 +37,14 @@ const routes = [
     component: AboutView,
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/:communityId",
     name: "dashboard",
     component: DashboardView,
+  },
+  {
+    path: "/create-community",
+    name: "create-community",
+    component: CreateCommunityView,
   },
 ];
 

@@ -8,13 +8,17 @@ export default {
   },
   mutations: {
     setToken(state, token) {
+      console.log("setToken", token);
+
       state.token = token;
 
       token
         ? localStorage.setItem("token", token)
         : localStorage.removeItem("token");
 
-      axios.defaults.headers.common = { Authorization: `bearer ${token}` };
+      console.log("localStorage.getItem(token)", localStorage.getItem("token"));
+
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
     },
     setUser(state, user) {
       state.user = user;
@@ -34,6 +38,14 @@ export default {
         type: "success",
       });
     },
+    handleUnauthorised({ commit }) {
+      commit("setMessage", {
+        text: "Unauthorised",
+        type: "danger",
+      });
+      commit("setLoading", false);
+      commit("setView", "/login");
+    },
   },
   actions: {
     registerUser,
@@ -41,6 +53,7 @@ export default {
   },
   getters: {
     getUser: (state) => state.user,
+    getToken: (state) => state.token,
     getLoggedInState: (state) => {
       if (
         localStorage.getItem("token") == null ||
@@ -52,6 +65,15 @@ export default {
         axios.defaults.headers.common = {
           Authorization: `bearer ${state.token}`,
         };
+      }
+
+      if (
+        localStorage.getItem("user") == null ||
+        !localStorage.getItem("user")
+      ) {
+        state.user == null;
+      } else {
+        state.user = localStorage.getItem("user");
       }
 
       return state.token != null && state.token != false;

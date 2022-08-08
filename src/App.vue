@@ -25,6 +25,7 @@ export default {
   components: { MainNavbar, MessageUtil, LoaderUtil },
   created() {
     console.log("app.this.$store.getters.getView", this.$store.getters.getView);
+    console.log("token", this.$store.getters.getToken);
   },
 };
 </script>

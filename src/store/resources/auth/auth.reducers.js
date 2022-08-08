@@ -78,7 +78,7 @@ export const loginUser = async ({ commit }, loginData) => {
           type: "danger",
         });
         break;
-      case 409:
+      case 401:
         commit("setMessage", {
           text: err.response.data.message,
           type: "danger",
@@ -89,6 +89,9 @@ export const loginUser = async ({ commit }, loginData) => {
           text: err.response.data.message,
           type: "danger",
         });
+        break;
+      case 409:
+        commit("handleUnauthorised");
         break;
       default:
         commit("setMessage", {

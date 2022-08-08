@@ -21,6 +21,7 @@ Vue.mixin(messageMixin);
 Vue.prototype.$dbg = true;
 
 axios.defaults.baseURL = "http://localhost:13372/api";
+axios.defaults.headers.common = { "Content-type": `application/json` };
 
 Vue.config.productionTip = false;
 

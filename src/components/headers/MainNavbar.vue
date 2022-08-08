@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/dashboard">Dashboard</b-nav-item>
-          <b-nav-item href="/about">About</b-nav-item>
+          <b-nav-item to="/about">About</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -24,6 +24,7 @@
             >
           </b-nav-form> -->
 
+          <CommunityDropdown v-if="isLoggedIn" />
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
@@ -49,8 +50,11 @@
 </template>
 
 <script>
+import CommunityDropdown from "../utils/dropdowns/CommunityDropdown.vue";
+
 export default {
   name: "MainNavbar",
+  components: { CommunityDropdown },
   computed: {
     view() {
       return this.$store.getters.getView;
