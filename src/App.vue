@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <MainNavbar />
-    <b-container class="bv-example-row pt-2">
+    <div class="pl-5 pr-5">
       <b-row class="text-center">
-        <b-col>Left Sidebar</b-col>
+        <b-col><LeftSidebar /></b-col>
         <b-col cols="8">
           <MessageUtil />
           <LoaderUtil />
           <router-view />
         </b-col>
-        <b-col>Right Sidebar</b-col>
+        <b-col><RightSidebar /></b-col>
       </b-row>
-    </b-container>
+    </div>
   </div>
 </template>
 
@@ -19,10 +19,18 @@
 import MainNavbar from "./components/headers/MainNavbar.vue";
 import MessageUtil from "./components/utils/MessageUtil.vue";
 import LoaderUtil from "./components/utils/LoaderUtil.vue";
+import LeftSidebar from "./components/sidebars/LeftSidebar.vue";
+import RightSidebar from "./components/sidebars/RightSidebar.vue";
 
 export default {
   name: "App",
-  components: { MainNavbar, MessageUtil, LoaderUtil },
+  components: {
+    MainNavbar,
+    LoaderUtil,
+    MessageUtil,
+    LeftSidebar,
+    RightSidebar,
+  },
   created() {
     console.log("app.this.$store.getters.getView", this.$store.getters.getView);
     console.log("token", this.$store.getters.getToken);
