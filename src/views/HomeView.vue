@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <b-jumbotron header="My Groups" lead="Find your community">
+      <b-button variant="primary" to="/about">More Info</b-button>
+    </b-jumbotron>
   </div>
 </template>
 
