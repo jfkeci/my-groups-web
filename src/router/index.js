@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import UserLoginView from "../views/auth/UserLoginView.vue";
+import CreatePostView from "../views/post/CreatePostView.vue";
 import UserProfileView from "../views/auth/UserProfileView.vue";
 import UserRegisterView from "../views/auth/UserRegisterView.vue";
 import CreateCommunityView from "../views/community/CreateCommunityView.vue";
@@ -45,6 +46,16 @@ const routes = [
     path: "/create-community",
     name: "create-community",
     component: CreateCommunityView,
+  },
+  {
+    path: "/community/:communityId/create-post",
+    name: "create-post",
+    component: CreatePostView,
+  },
+  {
+    path: "/create-post",
+    name: "create-post",
+    component: CreatePostView,
   },
 ];
 

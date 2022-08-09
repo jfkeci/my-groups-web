@@ -1,29 +1,29 @@
 import axios from "axios";
 
-export const getUserCommunityPosts = async ({ commit }, userId) => {
+export const fetchUserCommunityPosts = async ({ commit }, userId) => {
   commit("setLoading", true);
   try {
     const res = await axios.get(`/user/${userId}/communities`);
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
-        text: "Communities successfully fetched",
+        text: "Community posts successfully fetched",
         type: "success",
       });
 
       console.log(res.data);
 
-      commit("setMemberCommunities", res.data);
+      commit("setCommunityPosts", res.data);
     } else {
-      commit("setMemberCommunities", []);
+      commit("setCommunityPosts", []);
 
       commit("setMessage", {
-        text: "No communities found, please create a new community",
+        text: "No community posts found, please create a new community post",
         type: "danger",
       });
     }
   } catch (err) {
-    console.log("getUserCommunityPosts.ERR", err);
+    console.log("fetchUserCommunityPosts.ERR", err);
     switch (err.response.status) {
       case 404:
         commit("setMessage", {
@@ -48,30 +48,30 @@ export const getUserCommunityPosts = async ({ commit }, userId) => {
   commit("setLoading", false);
 };
 
-export const getUserPostsForAllCommunities = async ({ commit }, userId) => {
+export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
   commit("setLoading", true);
   try {
     const res = await axios.get(`/user/${userId}/communities`);
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
-        text: "Communities successfully fetched",
+        text: "Community posts successfully fetched",
         type: "success",
       });
 
       console.log(res.data);
 
-      commit("setMemberCommunities", res.data);
+      commit("setCommunityPosts", res.data);
     } else {
-      commit("setMemberCommunities", []);
+      commit("setCommunityPosts", []);
 
       commit("setMessage", {
-        text: "No communities found, please create a new community",
+        text: "No community posts found, please create a new community post",
         type: "danger",
       });
     }
   } catch (err) {
-    console.log("getUserPostsForAllCommunities.ERR", err);
+    console.log("fetchUserPostsForAllCommunities.ERR", err);
     switch (err.response.status) {
       case 404:
         commit("setMessage", {
@@ -84,6 +84,51 @@ export const getUserPostsForAllCommunities = async ({ commit }, userId) => {
           text: err.response.data.message,
           type: "danger",
         });
+        break;
+      default:
+        commit("setMessage", {
+          text: "Something went wrong",
+          type: "danger",
+        });
+        break;
+    }
+  }
+  commit("setLoading", false);
+};
+
+export const fetchPostTypes = async ({ commit }) => {
+  commit("setLoading", true);
+
+  try {
+    const res = await axios.get(`/post-types`);
+
+    if (res.status == 200 && res.data.length) {
+      commit("setPostTypes", res.data);
+    } else {
+      commit("setPostTypes", []);
+
+      commit("setMessage", {
+        text: "No post types found, please create a post type",
+        type: "danger",
+      });
+    }
+  } catch (err) {
+    console.log("fetchPostTypes.ERR", err);
+    switch (err.response.status) {
+      case 404:
+        commit("setMessage", {
+          text: err.response.data.message,
+          type: "danger",
+        });
+        break;
+      case 400:
+        commit("setMessage", {
+          text: err.response.data.message,
+          type: "danger",
+        });
+        break;
+      case 401:
+        //commit("handleUnauthorised");
         break;
       default:
         commit("setMessage", {

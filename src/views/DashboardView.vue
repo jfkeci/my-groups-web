@@ -13,7 +13,7 @@ export default {
   async created() {
     if (this.$route.params.communityId) {
       await this.$store.dispatch(
-        "getUserCommunityPosts",
+        "fetchUserCommunityPosts",
         this.$store.getters.getUser,
         this.$route.params.communityId
       );

@@ -12,7 +12,7 @@
         {{ community.description ?? "" }}
       </b-card-text>
 
-      <b-button variant="primary" block>Edit</b-button>
+      <b-button variant="primary" class="mt-1" block>Edit</b-button>
     </b-card>
   </div>
 </template>
