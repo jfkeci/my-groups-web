@@ -22,7 +22,7 @@ export const registerUser = async ({ commit }, user) => {
       });
     }
   } catch (err) {
-    console.log("ERR", err);
+    console.log("registerUser.ERR", err);
     switch (err.response.status) {
       case 400:
         commit("setMessage", {
@@ -70,7 +70,7 @@ export const loginUser = async ({ commit }, loginData) => {
       }
     }
   } catch (err) {
-    console.log(err);
+    console.log("loginUser.ERR", err);
     switch (err.response.status) {
       case 400:
         commit("setMessage", {

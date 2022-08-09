@@ -4,7 +4,7 @@ export const getUserCommunityPosts = async ({ commit }, userId) => {
   commit("setLoading", true);
   try {
     const res = await axios.get(`/user/${userId}/communities`);
-    console.log("res", res);
+
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
         text: "Communities successfully fetched",
@@ -23,7 +23,7 @@ export const getUserCommunityPosts = async ({ commit }, userId) => {
       });
     }
   } catch (err) {
-    console.log("ERR", err);
+    console.log("getUserCommunityPosts.ERR", err);
     switch (err.response.status) {
       case 404:
         commit("setMessage", {
@@ -52,7 +52,7 @@ export const getUserPostsForAllCommunities = async ({ commit }, userId) => {
   commit("setLoading", true);
   try {
     const res = await axios.get(`/user/${userId}/communities`);
-    console.log("res", res);
+
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
         text: "Communities successfully fetched",
@@ -71,7 +71,7 @@ export const getUserPostsForAllCommunities = async ({ commit }, userId) => {
       });
     }
   } catch (err) {
-    console.log("ERR", err);
+    console.log("getUserPostsForAllCommunities.ERR", err);
     switch (err.response.status) {
       case 404:
         commit("setMessage", {

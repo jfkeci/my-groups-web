@@ -3,13 +3,13 @@
     <MainNavbar />
     <div class="pl-5 pr-5">
       <b-row class="text-center">
-        <b-col><LeftSidebar /></b-col>
+        <b-col><LeftSidebar class="mt-2" /></b-col>
         <b-col cols="8">
           <MessageUtil />
           <LoaderUtil />
           <router-view />
         </b-col>
-        <b-col><RightSidebar /></b-col>
+        <b-col><RightSidebar class="mt-2" /></b-col>
       </b-row>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
   },
   created() {
     console.log("app.this.$store.getters.getView", this.$store.getters.getView);
-    console.log("token", this.$store.getters.getToken);
+    console.log("App.created.token", this.$store.getters.getToken);
   },
 };
 </script>
