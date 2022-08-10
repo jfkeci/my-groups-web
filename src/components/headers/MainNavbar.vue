@@ -24,8 +24,13 @@
             >
           </b-nav-form> -->
 
+          <b-navbar-nav right v-if="!isLoggedIn">
+            <b-nav-item to="/login">Login</b-nav-item>
+            <b-nav-item to="/register">Register</b-nav-item>
+          </b-navbar-nav>
+
           <CommunityDropdown v-if="isLoggedIn" />
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right v-if="isLoggedIn">
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em>User</em>
@@ -35,12 +40,6 @@
             >
             <b-dropdown-item v-if="isLoggedIn" @click="logout"
               >Logout</b-dropdown-item
-            >
-            <b-dropdown-item v-if="!isLoggedIn" to="/login"
-              >Login</b-dropdown-item
-            >
-            <b-dropdown-item v-if="!isLoggedIn" to="/register"
-              >Register</b-dropdown-item
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>

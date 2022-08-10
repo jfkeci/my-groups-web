@@ -33,7 +33,13 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary" block>Login</b-button>
+          <b-button class="mt-3" type="submit" variant="primary" block>
+            Login
+          </b-button>
+
+          <h4 class="mt-3">
+            Don't have an account? <a href="/register">Register</a>
+          </h4>
         </b-form>
       </b-card>
     </b-card-group>

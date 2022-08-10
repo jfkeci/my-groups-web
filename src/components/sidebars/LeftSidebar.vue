@@ -1,6 +1,16 @@
 <template>
   <div>
-    <CommunityList />
+    <b-button
+      v-if="!isLoggedIn"
+      variant="success"
+      class="mt-1 mb-1"
+      block
+      to="/login"
+    >
+      Add post
+    </b-button>
+
+    <CommunityList v-if="isLoggedIn" />
   </div>
 </template>
 

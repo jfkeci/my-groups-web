@@ -90,7 +90,13 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary" block>Register</b-button>
+          <b-button class="mt-3" type="submit" variant="primary" block>
+            Register
+          </b-button>
+
+          <h4 class="mt-3">
+            Already have an account? <a href="/login">Login</a>
+          </h4>
         </b-form>
       </b-card>
     </b-card-group>
