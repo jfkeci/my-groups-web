@@ -2,5 +2,5 @@ const { defineConfig } = require("@vue/cli-service");
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: "/my-groups-web/",
+  publicPath: process.env.PUBLIC_PATH ?? "/my-groups-web/",
 });
