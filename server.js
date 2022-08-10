@@ -1,7 +1,7 @@
-import serveStatic from "serve-static";
-import express from "express";
-import dotenv from "dotenv";
-import path from "path";
+const serveStatic = require("serve-static");
+const express = require("express");
+const dotenv = require("dotenv");
+const path = require("path");
 
 dotenv.config();
 
