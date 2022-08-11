@@ -18,9 +18,10 @@ Vue.mixin(viewMixin);
 Vue.mixin(authMixin);
 Vue.mixin(messageMixin);
 
-Vue.prototype.$dbg = process.env.DBG_MODE ? true : false;
+Vue.prototype.$dbg = process.env.VUE_APP_DBG_MODE ? true : false;
 
-axios.defaults.baseURL = process.env.API_BASE_URL;
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
+
 axios.defaults.headers.common = { "Content-type": `application/json` };
 
 Vue.config.productionTip = false;
