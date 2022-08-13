@@ -43,6 +43,11 @@ const routes = [
     component: DashboardView,
   },
   {
+    path: "/dashboard",
+    name: "dashboard",
+    component: DashboardView,
+  },
+  {
     path: "/create-community",
     name: "create-community",
     component: CreateCommunityView,

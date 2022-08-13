@@ -2,7 +2,7 @@
   <div id="app">
     <MainNavbar />
     <div class="pl-5 pr-5">
-      <b-row class="text-center">
+      <b-row>
         <b-col><LeftSidebar class="mt-2" /></b-col>
         <b-col cols="7">
           <MessageUtil />

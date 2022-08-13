@@ -1,10 +1,17 @@
 <template>
-  <div>this is the dashboard</div>
+  <div>
+    <PostsList />
+  </div>
 </template>
 
 <script>
+import PostsList from "../components/resources/post/PostsList.vue";
+
 export default {
   name: "DashboardView",
+  components: {
+    PostsList,
+  },
   data() {
     return {
       communities: [],

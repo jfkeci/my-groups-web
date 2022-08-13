@@ -7,9 +7,12 @@ import viewMixin from "./mixins/view.mixin";
 import authMixin from "./mixins/auth.mixin";
 import messageMixin from "./mixins/message.mixin";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import { Icon } from "leaflet";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+
+import "leaflet/dist/leaflet.css";
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -22,9 +25,15 @@ Vue.prototype.$dbg = process.env.VUE_APP_DBG_MODE ? true : false;
 
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 
-axios.defaults.headers.common = { "Content-type": `application/json` };
-
 Vue.config.productionTip = false;
+
+delete Icon.Default.prototype._getIconUrl;
+
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
 
 new Vue({
   router,

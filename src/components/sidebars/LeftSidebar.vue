@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CommunityList from "../lists/CommunityList.vue";
+import CommunityList from "../resources/community/CommunityList.vue";
 
 export default {
   name: "LeftSidebar",
