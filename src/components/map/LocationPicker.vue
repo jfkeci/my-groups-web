@@ -12,7 +12,7 @@
         <b-button-group>
           <b-button
             size="sm"
-            id="tooltip-set-position"
+            id="button-set-position"
             v-if="!setterActive"
             @click="setterActive = true"
           >
@@ -20,17 +20,17 @@
           </b-button>
           <b-button
             size="sm"
-            id="tooltip-lock-position"
+            id="button-lock-position"
             v-if="setterActive"
             @click="setterActive = false"
           >
             Done
           </b-button>
         </b-button-group>
-        <b-tooltip target="tooltip-set-position" triggers="hover">
+        <b-tooltip target="button-set-position" triggers="hover">
           Set new position
         </b-tooltip>
-        <b-tooltip target="tooltip-lock-position" triggers="hover">
+        <b-tooltip target="button-lock-position" triggers="hover">
           Lock position
         </b-tooltip>
       </LControl>
