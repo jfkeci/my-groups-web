@@ -14,7 +14,7 @@ export const getUser = async ({ commit }, userId) => {
 
     return user;
   } catch (err) {
-    console.log("registerUser.ERR", err);
+    console.log("getUser.ERR", err);
     switch (err.response.status) {
       case 400:
         commit("setMessage", {
