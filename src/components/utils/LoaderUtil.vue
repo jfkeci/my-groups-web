@@ -1,5 +1,5 @@
 <template>
-  <b-spinner v-if="loading" variant="primary" label="Spinning"></b-spinner>
+  <b-spinner class="text-center" v-if="loading" variant="primary" label="Spinning"></b-spinner>
 </template>
 
 <script>

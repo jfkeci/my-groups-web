@@ -1,5 +1,11 @@
 import { fetchPostTypes } from "./post-type.reducers";
 
+import {
+  fetchUserCommunityPosts,
+  fetchUserPostsForAllCommunities,
+  createCommunityPost,
+} from "./posts.reducers";
+
 export default {
   state: {
     post: null,
@@ -22,6 +28,9 @@ export default {
     },
   },
   actions: {
+    fetchUserPostsForAllCommunities,
+    fetchUserCommunityPosts,
+    createCommunityPost,
     fetchPostTypes,
   },
   getters: {

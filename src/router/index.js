@@ -54,11 +54,6 @@ const routes = [
     component: CreateCommunityView,
   },
   {
-    path: "/community/:communityId/create-post",
-    name: "create-post",
-    component: CreatePostView,
-  },
-  {
     path: "/create-post",
     name: "create-post",
     component: CreatePostView,

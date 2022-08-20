@@ -18,17 +18,19 @@ export default {
     };
   },
   async created() {
-    if (this.$route.params.communityId) {
-      await this.$store.dispatch(
-        "fetchUserCommunityPosts",
-        this.$store.getters.getUser,
-        this.$route.params.communityId
-      );
-    } else {
-      await this.$store.dispatch(
-        "getUserPostsForAllCommunities",
-        this.$store.getters.getUser
-      );
+    if (this.isLoggedIn()) {
+      if (this.$route.params.communityId) {
+        await this.$store.dispatch(
+          "fetchUserCommunityPosts",
+          this.$store.getters.getUser,
+          this.$route.params.communityId
+        );
+      } else {
+        await this.$store.dispatch(
+          "getUserPostsForAllCommunities",
+          this.$store.getters.getUser
+        );
+      }
     }
   },
 };

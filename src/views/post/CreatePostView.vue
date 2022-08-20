@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-card-group deck>
-      <b-card class="mt-2" header="Create post">
-        <b-form @submit="onSubmit" class="pl-5 pr-5">
+      <b-card v-if="communities.length" class="mt-2" header="Create post">
+        <b-form class="pl-5 pr-5">
           <b-form-group
             class="ml-5 mr-5"
             id="input-group-1"
@@ -37,16 +37,38 @@
             label="Post Type"
             label-for="input-1"
           >
+            <small>{{ postTypeDescription }}</small>
             <b-form-select
-              v-model="selected"
-              :options="options"
+              v-model="selectedType"
+              :options="postTypeOptions"
             ></b-form-select>
           </b-form-group>
 
-          <b-button type="submit" variant="primary" block>
+          <b-button @click="createPost()" variant="primary" block>
             Create Post
           </b-button>
         </b-form>
+      </b-card>
+      <b-card
+        v-if="!communities.length"
+        class="mt-2"
+        header="Create communities"
+      >
+        <h4>You dont belong to any community</h4>
+        <p>
+          You can create your own community, or ask someone to add you to their
+          community
+        </p>
+
+        <b-button
+          block
+          class="m-3"
+          variant="success"
+          size="sm"
+          to="/create-community"
+        >
+          Create community
+        </b-button>
       </b-card>
     </b-card-group>
     <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
@@ -61,15 +83,20 @@ export default {
   data() {
     return {
       form: {
-        title: "new-community-post",
         body: "new-community-post-body",
+        title: "new-community-post",
       },
-      selected: null,
+      selectedCommunity: null,
+      selectedType: "info",
     };
   },
-  async created() {
+  async mounted() {
     if (!this.isLoggedIn) {
       this.$store.commit("setView", "/login");
+    }
+
+    if (this.$route.params.communityId) {
+      this.selectedCommunity = this.$route.params.communityId;
     }
 
     await this.$store.dispatch("fetchPostTypes");
@@ -78,22 +105,38 @@ export default {
     postTypes() {
       return this.$store.getters.getPostTypes;
     },
-    options() {
+    postTypeOptions() {
       return this.postTypes.length
         ? this.postTypes.map((pt) => ({ value: pt.id, text: pt.title }))
         : [];
     },
+    postTypeDescription() {
+      const type = this.postTypes.filter((pt) => pt.id == this.selectedType);
+
+      return type ? type[0].description : "";
+    },
+    communities() {
+      const communityMemberships = this.$store.getters.getMemberCommunities;
+
+      if (!communityMemberships || !communityMemberships.length) {
+        return [];
+      }
+
+      console.log(communityMemberships.map((cm) => cm.communities));
+
+      return communityMemberships.map((cm) => cm.communities);
+    },
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-
-      if (!this.selected) {
+    createPost() {
+      console.log("HERE");
+      if (!this.selectedType) {
         this.setMessage("Please select a post type", "danger");
         return;
       }
-      this.$store.dispatch("createPost", {
+      this.$store.dispatch("createCommunityPost", {
         title: this.form.title,
+        body: this.form.body ?? "",
         createdBy: Number(this.$store.getters.getUser),
       });
     },
