@@ -4,6 +4,21 @@
       <b-card v-if="communities.length" class="mt-2" header="Create post">
         <b-form class="pl-5 pr-5">
           <b-form-group
+            label-for="create-post-community-dropdown-input"
+            id="create-post-community-dropdown-input-group"
+            v-if="!$route.params.communityId"
+            label="Select community"
+            class="ml-5 mr-5"
+          >
+            <b-form-select
+              id="create-post-community-dropdown-input"
+              v-model="selectedCommunity"
+              :options="communities"
+              size="sm"
+            ></b-form-select>
+          </b-form-group>
+
+          <b-form-group
             class="ml-5 mr-5"
             id="create-post-input-group-1"
             label="Title"
@@ -13,6 +28,7 @@
               id="create-post-input-1"
               v-model="form.title"
               placeholder="Title"
+              size="sm"
               required
             ></b-form-input>
           </b-form-group>
@@ -25,9 +41,9 @@
           >
             <b-form-input
               id="create-post-input-2"
-              v-model="form.body"
               placeholder="Description"
-              required
+              v-model="form.body"
+              size="sm"
             ></b-form-input>
           </b-form-group>
 
@@ -39,8 +55,9 @@
           >
             <small>{{ postTypeDescription }}</small>
             <b-form-select
-              v-model="selectedType"
               :options="postTypeOptions"
+              v-model="selectedType"
+              size="sm"
             ></b-form-select>
           </b-form-group>
 
@@ -49,6 +66,7 @@
             @set-event-date="setEventDate"
           />
           <PollOptionsCreator
+            v-if="selectedType == 'poll'"
             @set-option-values="setPollData"
             @are-options-valid="pollOptionsValidity"
           />
@@ -139,7 +157,22 @@ export default {
         return [];
       }
 
-      return communityMemberships.map((cm) => cm.communities);
+      return communityMemberships.map((cm) => ({
+        value: cm.communities.id,
+        text: cm.communities.title,
+      }));
+    },
+  },
+  watch: {
+    communities: {
+      handler: function () {
+        if (!this.route.params.communityId) {
+          if (this.communities.length) {
+            this.selectedCommunity = this.communities[0]["value"];
+          }
+        }
+      },
+      deep: true,
     },
   },
   methods: {
