@@ -8,7 +8,6 @@ import CreatePostView from "../views/post/CreatePostView.vue";
 import UserProfileView from "../views/auth/UserProfileView.vue";
 import UserRegisterView from "../views/auth/UserRegisterView.vue";
 import CreateCommunityView from "../views/community/CreateCommunityView.vue";
-import CreateEventPostStructure from "../components/resources/post/event-post/CreateEventPostStructure.vue";
 
 Vue.use(VueRouter);
 
@@ -54,14 +53,9 @@ const routes = [
     component: CreateCommunityView,
   },
   {
-    path: "/create-post",
-    name: "create-post",
+    path: "/community/:communityId/create-post",
+    name: "create-community-post",
     component: CreatePostView,
-  },
-  {
-    path: "/create-poll-post",
-    name: "create-poll-post",
-    component: CreateEventPostStructure,
   },
 ];
 

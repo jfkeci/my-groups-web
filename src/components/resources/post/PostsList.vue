@@ -1,6 +1,6 @@
 <template>
   <div class="mt-3">
-    <PostsListItem />
+    <PostsListItem v-if="false" />
   </div>
 </template>
 

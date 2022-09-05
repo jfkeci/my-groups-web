@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const registerUser = async ({ commit }, user) => {
   commit("setLoading", true);
+
   try {
     const res = await axios.post(`/auth/register`, user);
 
@@ -9,6 +10,7 @@ export const registerUser = async ({ commit }, user) => {
       if (res.data.id) {
         commit("setUser", res.data.id);
         commit("setToken", res.data.token);
+        commit("setIsAdmin", res.data.isAdmin);
         commit("setMessage", {
           text: "User successfully registered",
           type: "success",
@@ -53,14 +55,16 @@ export const loginUser = async ({ commit }, loginData) => {
   try {
     const res = await axios.post(`/auth/login`, loginData);
 
-    if (res.status == 201 && res.data) {
+    if (res.status == 200 && res.data) {
       if (res.data.token) {
         commit("setUser", res.data.id);
         commit("setToken", res.data.token);
+        commit("setIsAdmin", res.data.isAdmin);
         commit("setMessage", {
           text: "Successfully logged in",
           type: "success",
         });
+        console.log("SETTING VIEW");
         commit("setView", "/dashboard");
       } else {
         commit("setMessage", {

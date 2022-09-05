@@ -14,7 +14,7 @@
         <b-row>
           <b-col cols="1"><PostLikeModal /></b-col>
           <b-col cols="1" class="ml-3"><PostCommentsModal /></b-col>
-          <b-col><ConfirmationModal /></b-col>
+          <!-- <b-col><ConfirmationModal /></b-col> -->
         </b-row>
       </template>
     </b-card>
@@ -24,7 +24,7 @@
 <script>
 import PostLikeModal from "../../modals/PostLikeModal.vue";
 import PostCommentsModal from "../../modals/PostCommentsModal.vue";
-import ConfirmationModal from "../../modals/ConfirmationModal.vue";
+/* import ConfirmationModal from "../../modals/ConfirmationModal.vue"; */
 
 export default {
   name: "PostsListItem",
@@ -37,7 +37,7 @@ export default {
   components: {
     PostLikeModal,
     PostCommentsModal,
-    ConfirmationModal,
+    /* ConfirmationModal, */
   },
 };
 </script>

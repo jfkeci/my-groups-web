@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "PostLikeModal",
+  name: "ConfirmationModal",
   props: {
     id: { type: String, required: true },
     action: { type: String, required: true },

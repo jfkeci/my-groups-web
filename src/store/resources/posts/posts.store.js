@@ -1,16 +1,31 @@
-import { fetchPostTypes } from "./post-type.reducers";
-
 import {
-  fetchUserCommunityPosts,
   fetchUserPostsForAllCommunities,
+  fetchUserCommunityPosts,
+  createCommunityPollPost,
   createCommunityPost,
 } from "./posts.reducers";
 
 export default {
   state: {
+    postTypes: [
+      {
+        type: "info",
+        title: "Information",
+        description: "Publish some information",
+      },
+      {
+        type: "event",
+        title: "Event",
+        description: "Publish an event",
+      },
+      {
+        type: "poll",
+        title: "Poll",
+        description: "Publish a poll",
+      },
+    ],
     post: null,
     posts: [],
-    postTypes: [],
     communityPosts: [],
   },
   mutations: {
@@ -20,9 +35,6 @@ export default {
     setPosts(state, posts) {
       state.posts = posts;
     },
-    setPostTypes(state, postTypes) {
-      state.postTypes = postTypes;
-    },
     setCommunityPosts(state, communityPosts) {
       state.communityPosts = communityPosts;
     },
@@ -30,8 +42,8 @@ export default {
   actions: {
     fetchUserPostsForAllCommunities,
     fetchUserCommunityPosts,
+    createCommunityPollPost,
     createCommunityPost,
-    fetchPostTypes,
   },
   getters: {
     getPost: (state) => state.post,

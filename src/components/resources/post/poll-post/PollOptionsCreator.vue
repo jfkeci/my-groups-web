@@ -1,20 +1,22 @@
 <template>
   <div>
-    <b-alert class="mt-2" variant="danger" show v-if="!areOptionsValid">
-      Write something for all options
-    </b-alert>
-
     <b-form-group
       class="ml-5 mr-5 mt-2"
       id="poll-structure-input-group-1"
       label="Poll options"
       label-for="poll-structure-input-1"
     >
-      <b-row
-        v-for="option in options"
-        :key="option.id"
-        class="mt-2 mb-2 ml-5 mr-5"
+      <b-button
+        v-if="options.length < 9"
+        @click="addOption"
+        variant="primary"
+        class="mt-1"
+        size="sm"
+        block
       >
+        Add option
+      </b-button>
+      <b-row v-for="option in options" :key="option.id" class="mt-2 mb-2 mr-5">
         <b-col>
           <b-form-input
             :id="`poll-structure-input-${option.id}`"
@@ -45,15 +47,26 @@
         </b-col>
       </b-row>
 
-      <b-button
-        class="mt-1 ml-5 mr-5"
-        @click="addOption"
+      <b-alert
+        v-if="!areOptionsValid"
+        variant="danger"
+        class="mt-2"
         size="sm"
-        variant="primary"
-        block
+        show
       >
-        Add option
-      </b-button>
+        Write something for all options
+      </b-alert>
+
+      <b-alert
+        v-if="!areOptionsUnique"
+        variant="danger"
+        class="mt-2"
+        size="sm"
+        show
+      >
+        All options must be unique
+      </b-alert>
+
       <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
         <pre class="m-0">{{ options }}</pre>
       </b-card>
@@ -63,21 +76,21 @@
 
 <script>
 export default {
-  name: "CreatePollPostStructure",
+  name: "PollOptionsCreator",
   data() {
     return {
       options: [
         {
           id: 1,
           title: "",
-          votes: 0,
         },
         {
           id: 2,
           title: "",
-          votes: 0,
         },
       ],
+      areOptionsUnique: false,
+      areOptionsValid: false,
     };
   },
   methods: {
@@ -85,7 +98,6 @@ export default {
       this.options.push({
         id: this.options.length + 1,
         title: "",
-        votes: 0,
       });
     },
     removeOption(id) {
@@ -93,27 +105,46 @@ export default {
         this.options = this.options.filter((o) => o.id != id);
       }
     },
+    isUnique(arr) {
+      var tmpArr = [];
+      for (var obj in arr) {
+        if (tmpArr.indexOf(arr[obj]["title"]) < 0) {
+          tmpArr.push(arr[obj]["title"]);
+        } else {
+          return false;
+        }
+      }
+      return true;
+    },
   },
   computed: {
-    areOptionsValid() {
-      return !this.options.some((o) => !o.title.length);
-    },
     hasTwoOptions() {
       return this.options.length > 2;
     },
+    haveUniqueTitles() {
+      return this.isUnique(this.options);
+    },
   },
   watch: {
-    areOptionsValid() {
-      this.$emit("are-options-valid", this.areOptionsValid);
+    options: {
+      handler: function () {
+        this.areOptionsUnique = this.isUnique(this.options);
+        this.areOptionsValid = !this.options.some((o) => !o.title.length);
 
-      if (!this.areOptionsValid) {
-        this.$emit("option-values", {
-          options: this.options,
-          votes: [],
-        });
-      } else {
-        this.$emit("option-values", null);
-      }
+        this.$emit(
+          "are-options-valid",
+          this.areOptionsValid && this.areOptionsUnique
+        );
+
+        if (this.areOptionsValid && this.areOptionsUnique) {
+          this.$emit("set-option-values", {
+            options: this.options,
+          });
+        } else {
+          this.$emit("set-option-values", null);
+        }
+      },
+      deep: true,
     },
   },
 };

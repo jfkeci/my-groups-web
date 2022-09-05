@@ -5,12 +5,12 @@
         <b-form @submit="onSubmit" class="pl-5 pr-5">
           <b-form-group
             class="ml-5 mr-5"
-            id="input-group-1"
+            id="register-input-group-1"
             label="Username"
-            label-for="input-1"
+            label-for="register-input-1"
           >
             <b-form-input
-              id="input-1"
+              id="register-input-1"
               v-model="form.username"
               placeholder="Username"
               required
@@ -19,12 +19,12 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            id="input-group-2"
+            id="register-input-group-2"
             label="Email"
-            label-for="input-2"
+            label-for="register-input-2"
           >
             <b-form-input
-              id="input-2"
+              id="register-input-2"
               v-model="form.email"
               type="email"
               placeholder="Email"
@@ -34,12 +34,12 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            id="input-group-3"
+            id="register-input-group-3"
             label="Password"
-            label-for="input-3"
+            label-for="register-input-3"
           >
             <b-form-input
-              id="input-3"
+              id="register-input-3"
               v-model="form.password"
               placeholder="Password"
               type="password"
@@ -49,12 +49,12 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            id="input-group-4"
+            id="register-input-group-4"
             label="Confirm password"
-            label-for="input-4"
+            label-for="register-input-4"
           >
             <b-form-input
-              id="input-4"
+              id="register-input-4"
               v-model="form.confirmPassword"
               placeholder="Confirm Password"
               type="password"
@@ -64,12 +64,12 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            id="input-group-5"
+            id="register-input-group-5"
             label="First Name"
-            label-for="input-5"
+            label-for="register-input-5"
           >
             <b-form-input
-              id="input-5"
+              id="register-input-5"
               v-model="form.firstName"
               placeholder="First Name"
               required
@@ -78,16 +78,32 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            id="input-group-6"
+            id="register-input-group-6"
             label="First Name"
-            label-for="input-6"
+            label-for="register-input-6"
           >
             <b-form-input
-              id="input-6"
+              id="register-input-6"
               v-model="form.lastName"
               placeholder="Last Name"
               required
             ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            class="ml-5 mr-5"
+            id="register-input-group-7"
+            label="First Name"
+            label-for="register-input-7"
+            v-if="isAdmin"
+          >
+            <b-form-checkbox
+              id="register-is-admin-checkbox"
+              v-model="form.isAdmin"
+              name="register-is-admin-checkbox"
+            >
+              Create admin user
+            </b-form-checkbox>
           </b-form-group>
 
           <b-button class="mt-3" type="submit" variant="primary" block>
@@ -118,18 +134,34 @@ export default {
         confirmPassword: "test1234",
         firstName: "filip",
         lastName: "kecilobas",
+        isAdmin: false,
       },
     };
   },
   created() {
-    if (this.isLoggedIn) {
+    if (!this.adminCreatingNewUser) {
       this.$store.commit("setView", "/dashboard");
     }
+  },
+  computed: {
+    adminCreatingNewUser() {
+      return this.isLoggedIn && !this.$store.getters.isUserAdmin;
+    },
+  },
+  watch: {
+    isAdmin() {
+      this.form.isAdmin = this.$store.getters.isUserAdmin;
+    },
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      this.$store.dispatch("registerUser", this.form);
+      this.$store.dispatch(
+        "registerUser",
+        this.form.isAdmin
+          ? { ...this.form, adminVoucher: this.$store.getters.getUser }
+          : this.form
+      );
     },
   },
 };

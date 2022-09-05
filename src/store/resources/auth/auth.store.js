@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default {
   state: {
+    isAdmin: false,
     user: null,
     token: null,
   },
@@ -26,6 +27,9 @@ export default {
       user
         ? localStorage.setItem("user", user)
         : localStorage.removeItem("user");
+    },
+    setIsAdmin(state, isAdmin) {
+      state.isAdmin = isAdmin;
     },
     logout({ state, commit }) {
       state.user = null;
@@ -53,6 +57,7 @@ export default {
   },
   getters: {
     getUser: (state) => state.user,
+    isUserAdmin: (state) => state.isAdmin,
     getToken: (state) => state.token,
     getLoggedInState: (state) => {
       if (

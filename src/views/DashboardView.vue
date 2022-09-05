@@ -18,7 +18,7 @@ export default {
     };
   },
   async created() {
-    if (this.isLoggedIn()) {
+    if (this.isLoggedIn) {
       if (this.$route.params.communityId) {
         await this.$store.dispatch(
           "fetchUserCommunityPosts",
