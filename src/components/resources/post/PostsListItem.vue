@@ -1,22 +1,32 @@
 <template>
   <div>
     <b-card
-      title="Post title"
-      img-src="https://picsum.photos/600/300/?image=25"
+      :title="post.title"
+      :img-src="
+        post.type == 'info' ? 'https://picsum.photos/600/300/?image=25' : ''
+      "
       img-top
       tag="article"
       class="mb-2"
       footer-tag="footer"
     >
-      <b-card-text class="mt-2 mb-2"> Post description </b-card-text>
+      <b-card-text class="mt-2 mb-2" v-if="post.body">
+        {{ post.body }}
+      </b-card-text>
       <br />
 
-      <PollPostListItemStructure v-if="post.type == 'poll'" />
-      <EventPostListItemStructure v-if="post.type == 'event'" />
+      <PollPostListItemStructure :post="post" v-if="post.type == 'poll'" />
+      <EventPostListItemStructure :post="post" v-if="post.type == 'event'" />
+
       <br />
+
       <PostCommentsList />
       <template #footer>
-        <b-row> </b-row>
+        <div class="d-flex align-items-center">
+          <small class="ml-1">
+            <b>{{ post.type.toUpperCase() }}</b>
+          </small>
+        </div>
       </template>
     </b-card>
   </div>

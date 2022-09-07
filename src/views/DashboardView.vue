@@ -27,7 +27,7 @@ export default {
         );
       } else {
         await this.$store.dispatch(
-          "getUserPostsForAllCommunities",
+          "fetchUserPostsForAllCommunities",
           this.$store.getters.getUser
         );
       }
