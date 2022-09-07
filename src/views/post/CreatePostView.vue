@@ -19,9 +19,9 @@
           </b-form-group>
 
           <b-form-group
+            label="Title"
             class="ml-5 mr-5"
             id="create-post-input-group-1"
-            label="Title"
             label-for="create-post-input-1"
           >
             <b-form-input
@@ -35,22 +35,41 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            id="create-post-input-group-2"
             label="Description"
+            id="create-post-input-group-2"
             label-for="create-post-input-2"
           >
-            <b-form-input
+            <b-form-textarea
+              placeholder="Add description"
               id="create-post-input-2"
-              placeholder="Description"
               v-model="form.body"
-              size="sm"
-            ></b-form-input>
+              rows="3"
+            ></b-form-textarea>
           </b-form-group>
 
           <b-form-group
+            label="Image"
+            class="ml-5 mr-5"
+            id="create-post-input-group-4"
+            label-for="create-post-input-4"
+          >
+            <b-form-file
+              placeholder="Choose a image or drop it here..."
+              drop-placeholder="Drop image here..."
+              :state="Boolean(form.image)"
+              id="create-post-input-4"
+              v-model="form.image"
+              size="sm"
+            ></b-form-file>
+            <small class="mt-3" v-if="form.image">
+              Selected image: {{ form.image ? form.image : "" }}
+            </small>
+          </b-form-group>
+
+          <b-form-group
+            label="Post Type"
             class="ml-5 mr-5"
             id="create-post-input-group-3"
-            label="Post Type"
             label-for="create-post-input-3"
           >
             <small>{{ postTypeDescription }}</small>
@@ -120,6 +139,7 @@ export default {
         body: "new-community-post-body",
         title: "new-community-post",
         date: null,
+        image: null,
       },
       selectedCommunity: null,
       selectedType: "info",
@@ -166,7 +186,7 @@ export default {
   watch: {
     communities: {
       handler: function () {
-        if (!this.route.params.communityId) {
+        if (!this.$route.params.communityId) {
           if (this.communities.length) {
             this.selectedCommunity = this.communities[0]["value"];
           }
@@ -212,8 +232,8 @@ export default {
             title: this.form.title,
             body: this.form.body ?? "",
             type: this.selectedType,
-            date: null,
             createdBy: Number(this.$store.getters.getUser),
+            date: null,
           },
           options: this.pollData,
         });

@@ -1,14 +1,26 @@
 <template>
-  <div class="ml-5 mr-5 pr-5 pl-5">
-    <div class="mt-2">
-      <label for="choose-event-date-input">Choose event date</label>
+  <div class="ml-2 mr-2 pr-5 pl-5">
+    <div class="mt-1 mb-3">
+      <b-row>
+        <b-col>
+          <label for="choose-event-date-input"> Choose event date </label>
 
-      <b-form-datepicker
-        size="sm"
-        id="choose-event-date-input"
-        v-model="date"
-        class="mb-2"
-      ></b-form-datepicker>
+          <b-form-datepicker
+            id="choose-event-date-input"
+            v-model="date"
+            size="sm"
+          ></b-form-datepicker>
+        </b-col>
+        <b-col>
+          <label for="choose-event-time-input"> Choose event time </label>
+
+          <b-form-timepicker
+            id="choose-event-time-input"
+            v-model="time"
+            size="sm"
+          ></b-form-timepicker>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
@@ -19,11 +31,40 @@ export default {
   data() {
     return {
       date: new Date(),
+      time: "12:00:00",
     };
   },
   watch: {
     date() {
-      this.$emit("set-event-date", this.date);
+      this.emitDateTime();
+    },
+    time() {
+      this.emitDateTime();
+    },
+  },
+  methods: {
+    emitDateTime() {
+      if (typeof this.date != "string") {
+        this.$emit(
+          "set-event-date",
+          new Date(
+            `${this.date.getDay()}.${this.date.getMonth()}.${this.date.getFullYear()}, ${
+              this.time
+            }`
+          )
+        );
+      } else {
+        const tempDate = new Date(this.date);
+
+        this.$emit(
+          "set-event-date",
+          new Date(
+            `${tempDate.getDay()}.${tempDate.getMonth()}.${tempDate.getFullYear()}, ${
+              this.time
+            }`
+          )
+        );
+      }
     },
   },
   created() {

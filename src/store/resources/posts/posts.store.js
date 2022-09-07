@@ -1,7 +1,6 @@
 import {
   fetchUserPostsForAllCommunities,
   fetchUserCommunityPosts,
-  createCommunityPollPost,
   createCommunityPost,
 } from "./posts.reducers";
 
@@ -42,7 +41,6 @@ export default {
   actions: {
     fetchUserPostsForAllCommunities,
     fetchUserCommunityPosts,
-    createCommunityPollPost,
     createCommunityPost,
   },
   getters: {

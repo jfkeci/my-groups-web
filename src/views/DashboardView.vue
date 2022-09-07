@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PostsList />
+    <PostsList v-if="isLoggedIn" />
   </div>
 </template>
 

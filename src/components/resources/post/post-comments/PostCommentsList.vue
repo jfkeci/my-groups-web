@@ -2,6 +2,7 @@
   <div>
     <b-list-group>
       <PostCommentsListItem />
+      <p>...</p>
     </b-list-group>
   </div>
 </template>

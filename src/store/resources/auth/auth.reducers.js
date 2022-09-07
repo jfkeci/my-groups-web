@@ -51,6 +51,7 @@ export const registerUser = async ({ commit }, user) => {
 };
 
 export const loginUser = async ({ commit }, loginData) => {
+  console.log("loginData", loginData);
   commit("setLoading", true);
   try {
     const res = await axios.post(`/auth/login`, loginData);
