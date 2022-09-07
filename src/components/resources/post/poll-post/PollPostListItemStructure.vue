@@ -1,20 +1,10 @@
 <template>
-  <b-card
-    title="Post title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-top
-    tag="article"
-    class="mb-2"
-    footer-tag="footer"
-  >
-    PollPostListItem
-    <b-card-text class="mt-2 mb-2"> Post description </b-card-text>
-  </b-card>
+  <div>PollPostListItemStructure</div>
 </template>
 
 <script>
 export default {
-  name: "PollPostListItem",
+  name: "PollPostListItemStructure",
   props: {
     post: {
       required: false,
