@@ -12,7 +12,11 @@
         <b-badge
           id="show-btn"
           @click="$bvModal.show(`poll-votes-modal-${option.id ?? ''}`)"
-          >{{ option.poll_option_votes.length }}
+          >{{
+            option.poll_option_votes.some((v) => v.users.id == currentUser)
+              ? `You and ${option.poll_option_votes.length - 1} user`
+              : `${option.poll_option_votes.length} users`
+          }}
         </b-badge>
 
         <b-modal

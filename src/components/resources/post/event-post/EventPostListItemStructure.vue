@@ -1,5 +1,14 @@
 <template>
   <div>
+    <p class="m-3" v-if="$dbg">dbg ID:{{ post.id }}</p>
+    <b-form-datepicker
+      id="choose-event-date-input-disabled"
+      :value="post.date"
+      class="mb-3"
+      size="sm"
+      disabled
+    ></b-form-datepicker>
+
     <b-list-group>
       <b-list-group-item
         class="d-flex align-items-left"

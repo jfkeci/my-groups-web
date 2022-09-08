@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import UserLoginView from "../views/auth/UserLoginView.vue";
 import CreatePostView from "../views/post/CreatePostView.vue";
@@ -31,11 +30,6 @@ const routes = [
     path: "/profile",
     name: "profile",
     component: UserProfileView,
-  },
-  {
-    path: "/about",
-    name: "about",
-    component: AboutView,
   },
   {
     path: "/dashboard/:communityId",

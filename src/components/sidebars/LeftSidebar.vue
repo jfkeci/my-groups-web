@@ -1,11 +1,10 @@
 <template>
   <div>
     <b-button
-      v-if="!isLoggedIn"
       variant="success"
       class="mt-1 mb-1"
       block
-      to="/login"
+      :to="isLoggedIn ? '/create-post' : '/login'"
     >
       Add post
     </b-button>

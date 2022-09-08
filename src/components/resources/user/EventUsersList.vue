@@ -9,6 +9,7 @@
         <span class="mr-auto" :to="`/user/${event_user.users.id}`">
           {{ `${event_user.users.firstName} ${event_user.users.lastName}` }}
         </span>
+        <b-badge v-if="event_user.users.id == currentUser"> YOU </b-badge>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -16,11 +17,16 @@
 
 <script>
 export default {
-  name: "PollVoteUsersList",
+  name: "EventUsersList",
   props: {
     event_users: {
       type: Array,
       required: true,
+    },
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.getUser;
     },
   },
 };
