@@ -5,9 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "deploy": "sh deploy.sh",
-    "start": "node server.js"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -15,12 +13,14 @@
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",
     "dotenv": "^16.0.1",
+    "event-pubsub": "^5.0.3",
     "express": "^4.18.1",
     "leaflet": "^1.8.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "serve-static": "^1.15.0",
     "vue": "^2.6.14",
+    "vue-i18n": "^8.27.2",
     "vue-router": "^3.5.1",
     "vue2-boring-avatars": "^0.3.4",
     "vue2-leaflet": "^2.7.1",
@@ -32,10 +32,10 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
+    "vue-cli-plugin-store": "~0.0.7",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "vue-cli-plugin-store": "~0.0.7",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
