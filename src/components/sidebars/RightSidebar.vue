@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button
+    <!--     <b-button
       v-if="isLoggedIn && $route.params.communityId"
       variant="success"
       class="mt-1 mb-1"
@@ -8,7 +8,7 @@
       :to="`/community/${$route.params.communityId}/create-post`"
     >
       Add post
-    </b-button>
+    </b-button> -->
 
     <CommunityInfo />
   </div>

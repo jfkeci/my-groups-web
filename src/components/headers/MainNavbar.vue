@@ -24,6 +24,8 @@
             >
           </b-nav-form> -->
 
+          <LanguageDropdown />
+
           <b-navbar-nav right v-if="!isLoggedIn">
             <b-nav-item to="/login">Login</b-nav-item>
             <b-nav-item to="/register">Register</b-nav-item>
@@ -35,12 +37,12 @@
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item v-if="isLoggedIn" to="/profile"
-              >Profile</b-dropdown-item
-            >
-            <b-dropdown-item v-if="isLoggedIn" @click="logout"
-              >Logout</b-dropdown-item
-            >
+            <b-dropdown-item v-if="isLoggedIn" to="/profile">
+              Profile
+            </b-dropdown-item>
+            <b-dropdown-item v-if="isLoggedIn" @click="logout">
+              Logout
+            </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -50,10 +52,11 @@
 
 <script>
 import CommunityDropdown from "../utils/dropdowns/CommunityDropdown.vue";
+import LanguageDropdown from "../utils/dropdowns/LanguageDropdown.vue";
 
 export default {
   name: "MainNavbar",
-  components: { CommunityDropdown },
+  components: { CommunityDropdown, LanguageDropdown },
   computed: {
     view() {
       return this.$store.getters.getView;
