@@ -61,6 +61,11 @@
   "communitiesSuccessfullyFetched": "Communities successfully fetched",
   "userSuccessfullyRegistered":"User successfully registered",
   "noCommunityFound": "No community found",
+  "userSuccessfullyLoggedIn": "Successfully logged in",
+  "userSuccessfullyLoggedOut": "Successfully logged out",
+  "unauthorised": "Unauthorised",
+  "communitySuccessfullyCreated":"Community successfully created",
+  "failedToCreateCommunityPost": "Failed to create post",
   "errors": {
     "MYBnfe001": "No user found",
     "MYBnfe002": "No users found",

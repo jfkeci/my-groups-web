@@ -65,6 +65,7 @@
   "userSuccessfullyLoggedOut": "Uspješna odjava",
   "unauthorised": "Neautorizirano",
   "communitySuccessfullyCreated":"Zajednica uspješno kreirana",
+  "failedToCreateCommunityPost": "Neuspješno kreiranje objave",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",
