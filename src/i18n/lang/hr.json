@@ -9,7 +9,7 @@
   "logout": "odjava",
   "Logout": "Odjava",
   "dontHaveAccount": "Nemate korisnički račun?",
-  "alreadyHaveAccount": "Več imate korisnički račun?",
+  "alreadyHaveAccount": "Već imate korisnički račun?",
   "profile": "Profil",
   "User": "Korisnik",
   "user": "korisnik",
@@ -67,6 +67,10 @@
   "failedToCreateCommunityPost": "Neuspješno kreiranje objave",
   "userCommingToEvent": "Korisnik dolazi na događaj",
   "usersCommingToEvent": "Korisnika dolazi na događaj",
+  "welcomeTo": "Dobrodošli na",
+  "startNow": "Započnite sada",
+  "homeMessage": "Molimo vas prijavite se u svoj korisnički račun. Nakon toga možete kreirati svoju zajednicu ili zamoliti nekoga da vas doda u njihovu zajednicu. Ako ste već dio neke zajednice možete vidjeti sadržaj zajednice",
+  "findYourCommunity":"Pronađite svoju zajednicu",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",
@@ -108,12 +112,12 @@
     "MYBbre019": "Neuspješno spremanje opcija ankete",
     "MYBbre020": "Neuspješno ažuriranje objave",
     "MYBbre021": "Neuspješno brisanje objave",
-    "MYBcfe001": "Korisnik je več član ove zajednice",
+    "MYBcfe001": "Korisnik je već član ove zajednice",
     "MYBcfe002": "Vaučer korisnik nije admin",
     "MYBcfe003": "Korisničko ime je zauzeto",
     "MYBcfe004": "Email je zauzet",
-    "MYBcfe005": "Korisnik je več dio ovog događaja",
-    "MYBcfe006": "Korisnik je več glasao za ovu opciju",
+    "MYBcfe005": "Korisnik je već dio ovog događaja",
+    "MYBcfe006": "Korisnik je već glasao za ovu opciju",
     "default": "Nešto je pošlo po zlu"
   }
 }
