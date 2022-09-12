@@ -37,7 +37,9 @@
           :id="`event-users-modal-${post.id ?? ''}`"
           hide-footer
         >
-          <template #modal-title> Users comming to the event </template>
+          <template #modal-title>
+            {{ $t("usersCommingToEvent") }}
+          </template>
 
           <EventUsersList :event_users="post.event_users" />
 
@@ -46,7 +48,7 @@
             class="mt-3"
             @click="$bvModal.hide(`event-users-modal-${post.id ?? ''}`)"
           >
-            Close
+            {{ $t("close") }}
           </b-button>
         </b-modal>
       </b-list-group-item>

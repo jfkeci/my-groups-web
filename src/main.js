@@ -8,6 +8,7 @@ import authMixin from "./mixins/auth.mixin";
 import messageMixin from "./mixins/message.mixin";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import { Icon } from "leaflet";
+import { i18n } from "./i18n/i18n";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -38,5 +39,6 @@ Icon.Default.mergeOptions({
 new Vue({
   router,
   store,
+  i18n,
   render: (h) => h(App),
 }).$mount("#app");

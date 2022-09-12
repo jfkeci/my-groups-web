@@ -1,13 +1,15 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand to="/">MyGroups</b-navbar-brand>
+      <b-navbar-brand to="/"> </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item v-if="isLoggedIn" to="/dashboard">Dashboard</b-nav-item>
+          <b-nav-item v-if="isLoggedIn" to="/dashboard">
+            {{ $t("dashboard") }}
+          </b-nav-item>
           <!-- <b-nav-item to="/about">About</b-nav-item> -->
         </b-navbar-nav>
 
@@ -24,26 +26,26 @@
             >
           </b-nav-form> -->
 
-          <LanguageDropdown />
-
           <b-navbar-nav right v-if="!isLoggedIn">
-            <b-nav-item to="/login">Login</b-nav-item>
-            <b-nav-item to="/register">Register</b-nav-item>
+            <b-nav-item to="/login">{{ $t("Login") }}</b-nav-item>
+            <b-nav-item to="/register">{{ $t("Register") }}</b-nav-item>
           </b-navbar-nav>
 
           <CommunityDropdown v-if="isLoggedIn" />
+
           <b-nav-item-dropdown right v-if="isLoggedIn">
-            <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em>User</em>
+              <em>{{ $t("User") }}</em>
             </template>
             <b-dropdown-item v-if="isLoggedIn" to="/profile">
-              Profile
+              {{ $t("Profile") }}
             </b-dropdown-item>
             <b-dropdown-item v-if="isLoggedIn" @click="logout">
-              Logout
+              {{ $t("Logout") }}
             </b-dropdown-item>
           </b-nav-item-dropdown>
+
+          <LanguageDropdown />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

@@ -14,8 +14,10 @@
           @click="$bvModal.show(`poll-votes-modal-${option.id ?? ''}`)"
           >{{
             option.poll_option_votes.some((v) => v.users.id == currentUser)
-              ? `You and ${option.poll_option_votes.length - 1} user`
-              : `${option.poll_option_votes.length} users`
+              ? `${$t("youAnd")} ${option.poll_option_votes.length - 1} ${$t(
+                  "user"
+                )}`
+              : `${option.poll_option_votes.length} ${$t("users")}`
           }}
         </b-badge>
 
@@ -24,7 +26,7 @@
           :id="`poll-votes-modal-${option.id ?? ''}`"
           hide-footer
         >
-          <template #modal-title> Users that voted </template>
+          <template #modal-title> {{ $t("usersThatVoted") }} </template>
 
           <PollVoteUsersList :poll_option_votes="option.poll_option_votes" />
 
@@ -33,7 +35,7 @@
             class="mt-3"
             @click="$bvModal.hide(`poll-votes-modal-${option.id ?? ''}`)"
           >
-            Close
+            {{ $t("close") }}
           </b-button>
         </b-modal>
       </b-list-group-item>

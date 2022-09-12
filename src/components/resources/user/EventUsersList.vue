@@ -9,7 +9,9 @@
         <span class="mr-auto" :to="`/user/${event_user.users.id}`">
           {{ `${event_user.users.firstName} ${event_user.users.lastName}` }}
         </span>
-        <b-badge v-if="event_user.users.id == currentUser"> YOU </b-badge>
+        <b-badge v-if="event_user.users.id == currentUser">
+          {{ $t("YOU") }}
+        </b-badge>
       </b-list-group-item>
     </b-list-group>
   </div>

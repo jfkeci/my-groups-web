@@ -28,10 +28,10 @@
           </b-button>
         </b-button-group>
         <b-tooltip target="button-set-position" triggers="hover">
-          Set new position
+          {{ $t("setNewPosition") }}
         </b-tooltip>
         <b-tooltip target="button-lock-position" triggers="hover">
-          Lock position
+          {{ $t("lockPosition") }}
         </b-tooltip>
       </LControl>
     </LMap>

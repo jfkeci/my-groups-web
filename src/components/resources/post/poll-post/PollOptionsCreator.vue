@@ -3,7 +3,7 @@
     <b-form-group
       class="ml-5 mr-5 mt-2"
       id="poll-structure-input-group-1"
-      label="Poll options"
+      :label="$t('pollOptions')"
       label-for="poll-structure-input-1"
     >
       <b-button
@@ -14,14 +14,14 @@
         size="sm"
         block
       >
-        Add option
+        {{ $t("addOption") }}
       </b-button>
       <b-row v-for="option in options" :key="option.id" class="mt-2 mb-2 mr-5">
         <b-col>
           <b-form-input
             :id="`poll-structure-input-${option.id}`"
             v-model="option.title"
-            placeholder="Description"
+            :placeholder="$t('description')"
             size="sm"
             required
           ></b-form-input>
@@ -42,7 +42,7 @@
             v-if="hasTwoOptions"
             triggers="hover"
           >
-            Remove option
+            {{ $t("removeOption") }}
           </b-tooltip>
         </b-col>
       </b-row>
@@ -54,7 +54,7 @@
         size="sm"
         show
       >
-        Write something for all options
+        {{ $t("writeSomethingForAllOptions") }}
       </b-alert>
 
       <b-alert
@@ -64,7 +64,7 @@
         size="sm"
         show
       >
-        All options must be unique
+        {{ $t("allOptionsMustBeUnique") }}
       </b-alert>
 
       <b-card class="mt-3" header="Form Data Result" v-if="$dbg">

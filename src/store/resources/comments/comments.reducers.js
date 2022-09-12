@@ -1,3 +1,4 @@
+import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
 export const createPostComment = async ({ commit }, data) => {
@@ -15,26 +16,13 @@ export const createPostComment = async ({ commit }, data) => {
     return newPostComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    switch (err.response.status) {
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 404:
-        console.log(err.response);
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
 };
@@ -54,26 +42,13 @@ export const getPostComments = async ({ commit }, postId) => {
     return postWithComments;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    switch (err.response.status) {
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 404:
-        console.log(err.response);
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
 };
@@ -95,26 +70,13 @@ export const getPostComment = async ({ commit }, params) => {
     return postComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    switch (err.response.status) {
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 404:
-        console.log(err.response);
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
 };
@@ -137,26 +99,13 @@ export const updatePostComment = async ({ commit }, data) => {
     return updatedPostComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    switch (err.response.status) {
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 404:
-        console.log(err.response);
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
 };
@@ -178,26 +127,13 @@ export const deletePostComment = async ({ commit }, params) => {
     return deletedPost;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    switch (err.response.status) {
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 404:
-        console.log(err.response);
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
 };

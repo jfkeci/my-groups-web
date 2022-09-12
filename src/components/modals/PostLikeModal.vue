@@ -14,14 +14,14 @@
     </b-button-group>
 
     <b-modal :id="`user-likes-modal-${id ?? ''}`" hide-footer>
-      <template #modal-title> Post likes </template>
+      <template #modal-title> {{ $t("postLikes") }} </template>
       <LikedUsersList />
       <b-button
         class="mt-3"
         block
         @click="$bvModal.hide(`user-likes-modal-${id ?? ''}`)"
       >
-        Close
+        {{ $t("close") }}
       </b-button>
     </b-modal>
   </div>

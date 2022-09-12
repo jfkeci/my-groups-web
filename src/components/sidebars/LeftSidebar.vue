@@ -6,7 +6,7 @@
       block
       :to="isLoggedIn ? '/create-post' : '/login'"
     >
-      Add post
+      {{ $t("addPost") }}
     </b-button>
 
     <CommunityList v-if="isLoggedIn" />

@@ -29,9 +29,9 @@ export default {
     },
     selected() {
       if (this.lang == "hr") {
-        return "Hr";
+        return "HR";
       } else if (this.lang == "en") {
-        return "En";
+        return "EN";
       } else {
         return "N/A";
       }

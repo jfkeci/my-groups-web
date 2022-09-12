@@ -3,7 +3,9 @@
     <div class="mt-1 mb-3">
       <b-row>
         <b-col>
-          <label for="choose-event-date-input"> Choose event date </label>
+          <label for="choose-event-date-input">
+            {{ $t("chooseEventDate") }}
+          </label>
 
           <b-form-datepicker
             id="choose-event-date-input"
@@ -12,7 +14,9 @@
           ></b-form-datepicker>
         </b-col>
         <b-col>
-          <label for="choose-event-time-input"> Choose event time </label>
+          <label for="choose-event-time-input">
+            {{ $t("chooseEventTime") }}
+          </label>
 
           <b-form-timepicker
             id="choose-event-time-input"

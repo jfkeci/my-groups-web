@@ -1,4 +1,5 @@
 import axios from "axios";
+import { i18n } from "../../../i18n/i18n";
 
 export const fetchUserCommunityPosts = async ({ commit }, userId) => {
   commit("setLoading", true);
@@ -24,25 +25,13 @@ export const fetchUserCommunityPosts = async ({ commit }, userId) => {
     }
   } catch (err) {
     console.log("fetchUserCommunityPosts.ERR", err);
-    switch (err.response.status) {
-      case 404:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
   commit("setLoading", false);
@@ -72,25 +61,13 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
     }
   } catch (err) {
     console.log("fetchUserPostsForAllCommunities.ERR", err);
-    switch (err.response.status) {
-      case 404:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
   commit("setLoading", false);
@@ -118,25 +95,13 @@ export const createCommunityPost = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("fetchUserPostsForAllCommunities.ERR", err);
-    switch (err.response.status) {
-      case 404:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 400:
-        commit("setMessage", {
-          text: err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.$t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
     }
   }
   commit("setLoading", false);

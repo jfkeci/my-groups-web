@@ -1,3 +1,4 @@
+import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
 export const getUser = async ({ commit }, userId) => {
@@ -18,14 +19,18 @@ export const getUser = async ({ commit }, userId) => {
     switch (err.response.status) {
       case 400:
         commit("setMessage", {
-          text: err.response.data.message,
+          text:
+            i18n.$t(`errors.${err.response.data.message}`) ??
+            err.response.data.message,
           type: "danger",
         });
         break;
       case 404:
         console.log(err.response);
         commit("setMessage", {
-          text: err.response.data.message,
+          text:
+            i18n.$t(`errors.${err.response.data.message}`) ??
+            err.response.data.message,
           type: "danger",
         });
         break;

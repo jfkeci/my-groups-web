@@ -1,19 +1,21 @@
 <template>
   <div>
-    <h4 id="sidebar-no-header-title" to="/">MyGroups</h4>
+    <h4 id="sidebar-no-header-title" to="/">{{ $t("appName") }}</h4>
     <div>
       <b-form-input
         v-model="text"
-        placeholder="Search communities"
+        :placeholder="$t('searchCommunities')"
       ></b-form-input>
     </div>
     <b-list-group v-if="memberCommunities.length > 0 && isLoggedIn">
       <b-list-group-item href="#foobar">
         <b-button variant="primary" block to="/create-community">
-          <b>+ Add</b>
+          <b>+ {{ $t("add") }}</b>
         </b-button>
       </b-list-group-item>
-      <b-list-group-item to="/dashboard">All</b-list-group-item>
+      <b-list-group-item to="/dashboard">
+        {{ $t("all") }}
+      </b-list-group-item>
       <CommunityListItem
         v-for="community in memberCommunities"
         :key="community.id"

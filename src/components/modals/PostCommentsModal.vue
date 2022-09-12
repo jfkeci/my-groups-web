@@ -11,14 +11,14 @@
     </b-button-group>
 
     <b-modal :id="`user-comments-modal-${id ?? ''}`" hide-footer>
-      <template #modal-title> Comments </template>
+      <template #modal-title> {{ $t("comments") }} </template>
       <PostCommentsList />
       <b-button
         class="mt-3"
         block
         @click="$bvModal.hide(`user-comments-modal-${id ?? ''}`)"
       >
-        Close
+        {{ $t("close") }}
       </b-button>
     </b-modal>
   </div>
