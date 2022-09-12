@@ -16,30 +16,14 @@ export const getUser = async ({ commit }, userId) => {
     return user;
   } catch (err) {
     console.log("getUser.ERR", err);
-    switch (err.response.status) {
-      case 400:
-        commit("setMessage", {
-          text:
-            i18n.$t(`errors.${err.response.data.message}`) ??
-            err.response.data.message,
-          type: "danger",
-        });
-        break;
-      case 404:
-        console.log(err.response);
-        commit("setMessage", {
-          text:
-            i18n.$t(`errors.${err.response.data.message}`) ??
-            err.response.data.message,
-          type: "danger",
-        });
-        break;
-      default:
-        commit("setMessage", {
-          text: "Something went wrong",
-          type: "danger",
-        });
-        break;
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message ??
+          i18n.t(`errors.default`),
+        type: "danger",
+      });
     }
   }
 };

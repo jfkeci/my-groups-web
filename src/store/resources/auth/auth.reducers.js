@@ -13,14 +13,14 @@ export const registerUser = async ({ commit }, user) => {
         commit("setToken", res.data.token);
         commit("setIsAdmin", res.data.isAdmin);
         commit("setMessage", {
-          text: "User successfully registered",
+          text: i18n.t("userSuccessfullyRegistered"),
           type: "success",
         });
         commit("setView", "/dashboard");
       }
     } else {
       commit("setMessage", {
-        text: "Something went wrong",
+        text: i18n.t("errors.default"),
         type: "danger",
       });
     }
@@ -29,7 +29,7 @@ export const registerUser = async ({ commit }, user) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -50,14 +50,14 @@ export const loginUser = async ({ commit }, loginData) => {
         commit("setToken", res.data.token);
         commit("setIsAdmin", res.data.isAdmin);
         commit("setMessage", {
-          text: "Successfully logged in",
+          text: i18n.t(`userSuccessfullyLoggedIn`),
           type: "success",
         });
         console.log("SETTING VIEW");
         commit("setView", "/dashboard");
       } else {
         commit("setMessage", {
-          text: "Something went wrong",
+          text: i18n.t("errors.default"),
           type: "danger",
         });
       }
@@ -67,7 +67,7 @@ export const loginUser = async ({ commit }, loginData) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });

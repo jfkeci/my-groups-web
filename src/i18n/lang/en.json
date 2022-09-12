@@ -4,6 +4,8 @@
   "dashboard": "Dashboard",
   "Login": "Login",
   "login": "login",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
   "Register": "Register",
   "register": "register",
   "logout": "logout",
@@ -43,6 +45,22 @@
   "searchCommunities": "Search communities",
   "description": "Description",
   "pollOptions": "Poll options",
+  "Email": "Email",
+  "Password": "Password",
+  "confirmPassword": "Confirm password",
+  "Username": "Username",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "loginUser": "Login user",
+  "registerUser": "Register user",
+  "newSuperAdmin?":"New super admin?",
+  "createSuperAdminUser": "Create super admin user",
+  "Title": "Title",
+  "Description": "Description",
+  "createCommunity": "Create community",
+  "communitiesSuccessfullyFetched": "Communities successfully fetched",
+  "userSuccessfullyRegistered":"User successfully registered",
+  "noCommunityFound": "No community found",
   "errors": {
     "MYBnfe001": "No user found",
     "MYBnfe002": "No users found",
@@ -89,6 +107,7 @@
     "MYBcfe003": "Username taken",
     "MYBcfe004": "Email taken",
     "MYBcfe005": "User is already a part of this event",
-    "MYBcfe006": "User already voted for this option"
+    "MYBcfe006": "User already voted for this option",
+    "default": "Something went wrong"
   }
 }

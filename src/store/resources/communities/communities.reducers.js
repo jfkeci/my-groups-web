@@ -11,7 +11,7 @@ export const fetchMemberCommunities = async ({ commit, getters }, userId) => {
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
-        text: "Communities successfully fetched",
+        text: i18n.t("communitiesSuccessfullyFetched"),
         type: "success",
       });
 
@@ -22,7 +22,7 @@ export const fetchMemberCommunities = async ({ commit, getters }, userId) => {
       commit("setMemberCommunities", []);
 
       commit("setMessage", {
-        text: "No communities found, please create a new community",
+        text: i18n.t("errors.MYBnfe016"), // no communities found
         type: "danger",
       });
     }
@@ -31,7 +31,7 @@ export const fetchMemberCommunities = async ({ commit, getters }, userId) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -51,7 +51,7 @@ export const createCommunity = async (
 
     if (res.status == 201 && res.data) {
       commit("setMessage", {
-        text: "Community successfully created",
+        text: i18n.t("communitySuccessfullyCreated"),
         type: "success",
       });
 
@@ -60,7 +60,7 @@ export const createCommunity = async (
       commit("setView", `/dashboard/${res.data.id}`);
     } else {
       commit("setMessage", {
-        text: "No communities found, please create a new community",
+        text: i18n.t("errors.MYBnfe016"),
         type: "danger",
       });
     }
@@ -69,7 +69,7 @@ export const createCommunity = async (
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -88,7 +88,7 @@ export const fetchCommunity = async ({ commit }, communityId) => {
       commit("setCommunity", res.data);
     } else {
       commit("setMessage", {
-        text: `No community found for ${communityId}`,
+        text: i18n.t("noCommunityFound"),
         type: "danger",
       });
     }
@@ -97,7 +97,7 @@ export const fetchCommunity = async ({ commit }, communityId) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });

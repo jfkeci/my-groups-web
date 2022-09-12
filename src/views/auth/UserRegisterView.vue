@@ -1,18 +1,18 @@
 <template>
   <div>
     <b-card-group deck>
-      <b-card class="mt-2" header="Register user">
+      <b-card class="mt-2" :header="$t('registerUser')">
         <b-form @submit="onSubmit" class="pl-5 pr-5">
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-1"
-            label="Username"
+            :label="$t('Username')"
             label-for="register-input-1"
           >
             <b-form-input
               id="register-input-1"
               v-model="form.username"
-              placeholder="Username"
+              :placeholder="$t('Username')"
               required
             ></b-form-input>
           </b-form-group>
@@ -20,14 +20,14 @@
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-2"
-            label="Email"
+            :label="$t('Email')"
             label-for="register-input-2"
           >
             <b-form-input
               id="register-input-2"
               v-model="form.email"
               type="email"
-              placeholder="Email"
+              :placeholder="$t('Email')"
               required
             ></b-form-input>
           </b-form-group>
@@ -35,13 +35,13 @@
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-3"
-            label="Password"
+            :label="$t('Password')"
             label-for="register-input-3"
           >
             <b-form-input
               id="register-input-3"
               v-model="form.password"
-              placeholder="Password"
+              :placeholder="$t('Password')"
               type="password"
               required
             ></b-form-input>
@@ -50,13 +50,13 @@
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-4"
-            label="Confirm password"
+            :label="$t('confirmPassword')"
             label-for="register-input-4"
           >
             <b-form-input
               id="register-input-4"
               v-model="form.confirmPassword"
-              placeholder="Confirm Password"
+              :placeholder="$t('confirmPassword')"
               type="password"
               required
             ></b-form-input>
@@ -65,13 +65,13 @@
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-5"
-            label="First Name"
+            :label="$t('firstName')"
             label-for="register-input-5"
           >
             <b-form-input
               id="register-input-5"
               v-model="form.firstName"
-              placeholder="First Name"
+              :placeholder="$t('firstName')"
               required
             ></b-form-input>
           </b-form-group>
@@ -79,13 +79,13 @@
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-6"
-            label="First Name"
+            :label="$t('lastName')"
             label-for="register-input-6"
           >
             <b-form-input
               id="register-input-6"
               v-model="form.lastName"
-              placeholder="Last Name"
+              :placeholder="$t('lastName')"
               required
             ></b-form-input>
           </b-form-group>
@@ -93,7 +93,7 @@
           <b-form-group
             class="ml-5 mr-5"
             id="register-input-group-7"
-            label="First Name"
+            :label="$t('newSuperAdmin?')"
             label-for="register-input-7"
             v-if="isAdmin"
           >
@@ -102,16 +102,19 @@
               v-model="form.isAdmin"
               name="register-is-admin-checkbox"
             >
-              Create admin user
+              {{ $t("createSuperAdminUser") }}
             </b-form-checkbox>
           </b-form-group>
 
           <b-button class="mt-3" type="submit" variant="primary" block>
-            Register
+            {{ $t("Register") }}
           </b-button>
 
           <h4 class="mt-3">
-            Already have an account? <a href="/login">Login</a>
+            {{ $t("alreadyHaveAccount") }}
+            <a href="/login">
+              {{ $t("Login") }}
+            </a>
           </h4>
         </b-form>
       </b-card>
@@ -139,13 +142,13 @@ export default {
     };
   },
   created() {
-    if (!this.adminCreatingNewUser) {
+    if (this.adminCreatingNewUser) {
       this.$store.commit("setView", "/dashboard");
     }
   },
   computed: {
     adminCreatingNewUser() {
-      return this.isLoggedIn && !this.$store.getters.isUserAdmin;
+      return this.isLoggedIn && this.$store.getters.isUserAdmin;
     },
   },
   watch: {

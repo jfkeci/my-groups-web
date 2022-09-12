@@ -8,7 +8,7 @@ export const fetchUserCommunityPosts = async ({ commit }, userId) => {
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
-        text: "Community posts successfully fetched",
+        text: i18n.t("communitiesSuccessfullyFetched"),
         type: "success",
       });
 
@@ -19,7 +19,7 @@ export const fetchUserCommunityPosts = async ({ commit }, userId) => {
       commit("setCommunityPosts", []);
 
       commit("setMessage", {
-        text: "No community posts found, please create a new community post",
+        text: i18n.t("errors.MYBnfe016"),
         type: "danger",
       });
     }
@@ -28,7 +28,7 @@ export const fetchUserCommunityPosts = async ({ commit }, userId) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -44,7 +44,7 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
-        text: "Community posts successfully fetched",
+        text: i18n.t("communitiesSuccessfullyFetched"),
         type: "success",
       });
 
@@ -55,7 +55,7 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
       commit("setCommunityPosts", []);
 
       commit("setMessage", {
-        text: "No community posts found, please create a new community post",
+        text: i18n.t("errors.MYBnfe016"),
         type: "danger",
       });
     }
@@ -64,7 +64,7 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -80,7 +80,7 @@ export const createCommunityPost = async ({ commit }, data) => {
 
     if (res.status == 201 && res.data) {
       commit("setMessage", {
-        text: "Community posts successfully fetched",
+        text: i18n.t("communitiesSuccessfullyFetched"),
         type: "success",
       });
 
@@ -89,7 +89,7 @@ export const createCommunityPost = async ({ commit }, data) => {
       return res.data;
     } else {
       commit("setMessage", {
-        text: "Failed to create community post",
+        text: i18n.t("failedToCreateCommunityPost"),
         type: "danger",
       });
     }
@@ -98,7 +98,7 @@ export const createCommunityPost = async ({ commit }, data) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });

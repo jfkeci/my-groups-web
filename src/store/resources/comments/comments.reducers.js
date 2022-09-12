@@ -19,7 +19,7 @@ export const createPostComment = async ({ commit }, data) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -45,7 +45,7 @@ export const getPostComments = async ({ commit }, postId) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -73,7 +73,7 @@ export const getPostComment = async ({ commit }, params) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -102,7 +102,7 @@ export const updatePostComment = async ({ commit }, data) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });
@@ -130,7 +130,7 @@ export const deletePostComment = async ({ commit }, params) => {
     if (err.response.status > 299) {
       commit("setMessage", {
         text:
-          i18n.$t(`errors.${err.response.data.message}`) ??
+          i18n.t(`errors.${err.response.data.message}`) ??
           err.response.data.message,
         type: "danger",
       });

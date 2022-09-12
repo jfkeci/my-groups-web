@@ -78,6 +78,7 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.$store.commit("setToken", false);
+      this.$store.commit("setView", "/login");
     },
   },
 };

@@ -1,4 +1,5 @@
 import { registerUser, loginUser } from "./auth.reducers.js";
+import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
 export default {
@@ -38,13 +39,13 @@ export default {
       localStorage.removeItem("token");
 
       commit("setMessage", {
-        text: "Successfully logged out",
+        text: i18n.t("userSuccessfullyLoggedOut"),
         type: "success",
       });
     },
     handleUnauthorised({ commit }) {
       commit("setMessage", {
-        text: "Unauthorised",
+        text: i18n.t("unauthorised"),
         type: "danger",
       });
       commit("setLoading", false);
