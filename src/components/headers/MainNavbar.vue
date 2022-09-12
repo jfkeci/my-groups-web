@@ -38,7 +38,7 @@
               <em>{{ $t("User") }}</em>
             </template>
             <b-dropdown-item v-if="isLoggedIn" to="/profile">
-              {{ $t("Profile") }}
+              {{ $t("profile") }}
             </b-dropdown-item>
             <b-dropdown-item v-if="isLoggedIn" @click="logout">
               {{ $t("Logout") }}
