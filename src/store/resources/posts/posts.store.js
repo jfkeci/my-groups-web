@@ -9,18 +9,18 @@ export default {
     postTypes: [
       {
         type: "info",
-        title: "Information",
-        description: "Publish some information",
+        title: "infoPost",
+        description: "infoDescription",
       },
       {
         type: "event",
-        title: "Event",
-        description: "Publish an event",
+        title: "eventPost",
+        description: "eventDescription",
       },
       {
         type: "poll",
-        title: "Poll",
-        description: "Publish a poll",
+        title: "pollPost",
+        description: "pollDescription",
       },
     ],
     post: null,

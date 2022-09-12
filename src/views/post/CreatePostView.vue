@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card-group deck>
-      <b-card v-if="communities.length" class="mt-2" header="Create post">
+      <b-card v-if="communities.length" class="mt-2" :header="$t('createPost')">
         <b-form class="pl-5 pr-5">
           <b-form-group
             label-for="create-post-community-dropdown-input"
@@ -19,7 +19,7 @@
           </b-form-group>
 
           <b-form-group
-            label="Title"
+            :label="$t('Title')"
             class="ml-5 mr-5"
             id="create-post-input-group-1"
             label-for="create-post-input-1"
@@ -27,7 +27,7 @@
             <b-form-input
               id="create-post-input-1"
               v-model="form.title"
-              placeholder="Title"
+              :placeholder="$t('Title')"
               size="sm"
               required
             ></b-form-input>
@@ -35,12 +35,12 @@
 
           <b-form-group
             class="ml-5 mr-5"
-            label="Description"
+            :label="$t('Description')"
             id="create-post-input-group-2"
             label-for="create-post-input-2"
           >
             <b-form-textarea
-              placeholder="Add description"
+              :placeholder="$t('Description')"
               id="create-post-input-2"
               v-model="form.body"
               rows="3"
@@ -48,26 +48,26 @@
           </b-form-group>
 
           <b-form-group
-            label="Image"
+            :label="$t('image')"
             class="ml-5 mr-5"
             id="create-post-input-group-4"
             label-for="create-post-input-4"
           >
             <b-form-file
-              placeholder="Choose a image or drop it here..."
-              drop-placeholder="Drop image here..."
+              :placeholder="$t('chooseOrDropImage')"
+              :drop-placeholder="$t('dropImageHere')"
               :state="Boolean(form.image)"
               id="create-post-input-4"
               v-model="form.image"
               size="sm"
             ></b-form-file>
             <small class="mt-3" v-if="form.image">
-              Selected image: {{ form.image ? form.image : "" }}
+              {{ $t("selectedImage") }}: {{ form.image ? form.image : "" }}
             </small>
           </b-form-group>
 
           <b-form-group
-            label="Post Type"
+            :label="$t('postType')"
             class="ml-5 mr-5"
             id="create-post-input-group-3"
             label-for="create-post-input-3"
@@ -91,7 +91,7 @@
           />
 
           <b-button @click="createPost()" variant="primary" block>
-            Create Post
+            {{ $t("createPost") }}
           </b-button>
         </b-form>
       </b-card>
@@ -136,8 +136,8 @@ export default {
   data() {
     return {
       form: {
-        body: "new-community-post-body",
-        title: "new-community-post",
+        body: "Opis nove informativne objave",
+        title: "Nova informativna objava",
         date: null,
         image: null,
       },
@@ -163,11 +163,14 @@ export default {
     postTypeDescription() {
       const type = this.postTypes.find((pt) => pt.type == this.selectedType);
 
-      return type ? type.description : "";
+      return type ? this.$t(type.description) : "";
     },
     postTypeOptions() {
       return this.postTypes.length
-        ? this.postTypes.map((pt) => ({ value: pt.type, text: pt.title }))
+        ? this.postTypes.map((pt) => ({
+            value: pt.type,
+            text: this.$t(pt.title),
+          }))
         : [{ value: "info", text: "Info" }];
     },
     communities() {

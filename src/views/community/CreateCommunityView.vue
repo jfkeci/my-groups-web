@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-card class="mt-2">
     <b-form @submit="onSubmit">
       <b-form-group id="input-group-1" :label="$t('Title')" label-for="input-1">
         <b-form-input
@@ -30,7 +30,7 @@
     <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
       <pre class="m-0">{{ form }}</pre>
     </b-card>
-  </div>
+  </b-card>
 </template>
 
 <script>

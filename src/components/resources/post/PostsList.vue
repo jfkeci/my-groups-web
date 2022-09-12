@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      posts: [
+      posts: [] /* [
         {
           id: 1,
           createdAt: "2022-09-07T19:35:46.000Z",
@@ -203,7 +203,7 @@ export default {
             },
           ],
         },
-      ],
+      ], */,
     };
   },
   /* computed: {

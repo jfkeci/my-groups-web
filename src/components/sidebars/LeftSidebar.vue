@@ -4,7 +4,13 @@
       variant="success"
       class="mt-1 mb-1"
       block
-      :to="isLoggedIn ? '/create-post' : '/login'"
+      :to="
+        isLoggedIn
+          ? $route.params.communityId
+            ? `/community/${$route.params.communityId}/create-post`
+            : '/create-post'
+          : '/login'
+      "
     >
       {{ $t("addPost") }}
     </b-button>
