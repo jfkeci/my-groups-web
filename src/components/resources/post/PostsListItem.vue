@@ -1,13 +1,12 @@
 <template>
-  <div>
+  <div class="mb-3">
     <b-card
       :title="post.title"
       :img-src="
-        post.type == 'info' ? 'https://picsum.photos/600/300/?image=25' : ''
+        post.type == 'info' ? post.image ?? 'https://picsum.photos/500/200' : ''
       "
       img-top
       tag="article"
-      class="mb-2"
       footer-tag="footer"
     >
       <b-card-text class="mt-2 mb-2" v-if="post.body">
@@ -24,7 +23,7 @@
       <template #footer>
         <div class="d-flex align-items-center">
           <small class="ml-1">
-            <b>{{ post.type.toUpperCase() }}</b>
+            <b>{{ $t(post.type.toUpperCase()) }}</b>
           </small>
         </div>
       </template>

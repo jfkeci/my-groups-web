@@ -1,7 +1,9 @@
 <template>
   <div>
+    <hr class="solid" />
     <h4 id="sidebar-no-header-title" to="/">{{ $t("appName") }}</h4>
-    <div>
+    <hr class="solid" />
+    <div class="mb-1 mt-3">
       <b-form-input
         v-model="text"
         :placeholder="$t('searchCommunities')"

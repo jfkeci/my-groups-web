@@ -6,6 +6,7 @@ export default {
   state: {
     isAdmin: false,
     user: null,
+    username: null,
     token: null,
   },
   mutations: {
@@ -31,6 +32,9 @@ export default {
     },
     setIsAdmin(state, isAdmin) {
       state.isAdmin = isAdmin;
+    },
+    setUsername(state, username) {
+      state.username = username;
     },
     logout({ state, commit }) {
       state.user = null;
@@ -58,6 +62,7 @@ export default {
   },
   getters: {
     getUser: (state) => state.user,
+    getUsername: (state) => state.username,
     isUserAdmin: (state) => state.isAdmin,
     getToken: (state) => state.token,
     getLoggedInState: (state) => {

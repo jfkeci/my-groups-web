@@ -12,6 +12,7 @@ export const registerUser = async ({ commit }, user) => {
         commit("setUser", res.data.id);
         commit("setToken", res.data.token);
         commit("setIsAdmin", res.data.isAdmin);
+        commit("setUsername", res.data.username);
         commit("setMessage", {
           text: i18n.t("userSuccessfullyRegistered"),
           type: "success",
@@ -49,6 +50,7 @@ export const loginUser = async ({ commit }, loginData) => {
         commit("setUser", res.data.id);
         commit("setToken", res.data.token);
         commit("setIsAdmin", res.data.isAdmin);
+        commit("setUsername", res.data.username);
         commit("setMessage", {
           text: i18n.t(`userSuccessfullyLoggedIn`),
           type: "success",

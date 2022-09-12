@@ -29,7 +29,6 @@
   "EVENT": "DOGAĐAJ",
   "chooseEventDate": "Odaberi datum događaja",
   "chooseEventTime": "Odaberi vrijeme događaja",
-  "usersCommingToEvent": "Korisnici koji dolaze na događaj",
   "addOption": "Dodaj opciju",
   "removeOption":"Ukloni opciju",
   "writeSomethingForAllOptions":"Napišite nešto za sve opcije",
@@ -66,6 +65,8 @@
   "unauthorised": "Neautorizirano",
   "communitySuccessfullyCreated":"Zajednica uspješno kreirana",
   "failedToCreateCommunityPost": "Neuspješno kreiranje objave",
+  "userCommingToEvent": "Korisnik dolazi na događaj",
+  "usersCommingToEvent": "Korisnika dolazi na događaj",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",

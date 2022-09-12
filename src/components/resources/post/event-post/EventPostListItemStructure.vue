@@ -27,8 +27,8 @@
         >
           {{
             post.event_users.length > 1
-              ? "Users comming to the event"
-              : "User comming to the event"
+              ? $t("usersCommingToEvent")
+              : $t("userCommingToEvent")
           }}
         </span>
 

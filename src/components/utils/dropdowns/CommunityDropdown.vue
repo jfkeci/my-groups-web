@@ -1,7 +1,7 @@
 <template>
   <b-nav-item-dropdown right>
     <template #button-content>
-      <em>Communities</em>
+      <em>{{ $t("communities") }}</em>
     </template>
     <div v-if="memberCommunities.length > 0">
       <b-dropdown-item
@@ -14,7 +14,7 @@
     </div>
     <b-dropdown-item>
       <b-button variant="primary" block to="/create-community">
-        <b>+ Add</b>
+        <b>+ {{ $t("add") }}</b>
       </b-button>
     </b-dropdown-item>
   </b-nav-item-dropdown>

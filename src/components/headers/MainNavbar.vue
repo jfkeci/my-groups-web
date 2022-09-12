@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item v-if="isLoggedIn" to="/dashboard">
-            {{ $t("dashboard") }}
+            {{ $t("appName") }}
           </b-nav-item>
           <!-- <b-nav-item to="/about">About</b-nav-item> -->
         </b-navbar-nav>
@@ -37,7 +37,7 @@
             <template #button-content>
               <em>{{ $t("User") }}</em>
             </template>
-            <b-dropdown-item v-if="isLoggedIn" to="/profile">
+            <b-dropdown-item v-if="isLoggedIn" :to="`/profile/${userId}`">
               {{ $t("profile") }}
             </b-dropdown-item>
             <b-dropdown-item v-if="isLoggedIn" @click="logout">
@@ -45,7 +45,7 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <LanguageDropdown />
+          <LanguageDropdown v-if="false" />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -62,6 +62,12 @@ export default {
   computed: {
     view() {
       return this.$store.getters.getView;
+    },
+    username() {
+      return this.$store.getters.getUsername;
+    },
+    userId() {
+      return this.$store.getters.getUser;
     },
   },
   watch: {
