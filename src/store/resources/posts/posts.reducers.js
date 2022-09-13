@@ -1,10 +1,12 @@
 import axios from "axios";
 import { i18n } from "../../../i18n/i18n";
 
-export const fetchUserCommunityPosts = async ({ commit }, userId) => {
+export const fetchUserCommunityPosts = async ({ commit }, data) => {
   commit("setLoading", true);
   try {
-    const res = await axios.get(`/user/${userId}/communities`);
+    const res = await axios.get(
+      `/user/${data.userId}/posts/${data.communityId}`
+    );
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
@@ -12,9 +14,9 @@ export const fetchUserCommunityPosts = async ({ commit }, userId) => {
         type: "success",
       });
 
-      console.log(res.data);
+      console.log("fetchUserCommunityPosts.res.data", res.data);
 
-      commit("setCommunityPosts", res.data);
+      commit("setPosts", res.data);
     } else {
       commit("setCommunityPosts", []);
 
@@ -40,7 +42,7 @@ export const fetchUserCommunityPosts = async ({ commit }, userId) => {
 export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
   commit("setLoading", true);
   try {
-    const res = await axios.get(`/user/${userId}/communities`);
+    const res = await axios.get(`/user/${userId}/posts`);
 
     if (res.status == 200 && res.data.length) {
       commit("setMessage", {
@@ -48,9 +50,7 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
         type: "success",
       });
 
-      console.log(res.data);
-
-      commit("setCommunityPosts", res.data);
+      commit("setPosts", res.data);
     } else {
       commit("setCommunityPosts", []);
 
@@ -75,6 +75,7 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
 
 export const createCommunityPost = async ({ commit }, data) => {
   commit("setLoading", true);
+  console.log("createCommunityPost.data", data);
   try {
     const res = await axios.post(`/posts`, data);
 
@@ -86,7 +87,7 @@ export const createCommunityPost = async ({ commit }, data) => {
 
       console.log("createCommunityPost.res.data", res.data);
 
-      return res.data;
+      commit("setView", `/dashboard/${data.community}`);
     } else {
       commit("setMessage", {
         text: i18n.t("failedToCreateCommunityPost"),

@@ -72,7 +72,7 @@
   "homeMessage": "Molimo vas prijavite se u svoj korisnički račun. Nakon toga možete kreirati svoju zajednicu ili zamoliti nekoga da vas doda u njihovu zajednicu. Ako ste već dio neke zajednice možete vidjeti sadržaj zajednice",
   "findYourCommunity":"Pronađite svoju zajednicu",
   "createPost": "Kreiraj objavu",
-  "image":"Image",
+  "image":"Slika",
   "chooseOrDropImage": "Odaberite ili povucite sliku ovdje...",
   "dropImageHere": "Povucite siku ovdje...",
   "selectedImage": "Odabrana slika",
@@ -83,6 +83,9 @@
   "eventDescription": "Objavite događaj",
   "infoDescription": "Objavite neku informaciju",
   "pollDescription": "Objavite anketu",
+  "bananjer":"some {{banana}} here",
+  "cantCreatePost":"Ne možete kreirati objavu zato što ne pripadate niti jednoj zajednici",
+  "createOrJoinCommunity":"Možete kreirati svoju zajednicu ili pitati nekoga da vas doda svoju zajednicu",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",

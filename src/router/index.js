@@ -51,6 +51,11 @@ const routes = [
     name: "create-community-post",
     component: CreatePostView,
   },
+  {
+    path: "/create-post",
+    name: "create-community-post",
+    component: CreatePostView,
+  },
 ];
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!communities.length">
+    <!-- <div v-if="!communities.length">
       <b-jumbotron :header="$t('appName')" :lead="$t('findYourCommunity')">
       </b-jumbotron>
       <div>
@@ -19,7 +19,7 @@
           </b-button>
         </b-card>
       </div>
-    </div>
+    </div> -->
     <PostsList v-if="isLoggedIn" />
   </div>
 </template>
@@ -37,14 +37,13 @@ export default {
       communities: [],
     };
   },
-  async created() {
+  async mounted() {
     if (this.isLoggedIn) {
       if (this.$route.params.communityId) {
-        await this.$store.dispatch(
-          "fetchUserCommunityPosts",
-          this.$store.getters.getUser,
-          this.$route.params.communityId
-        );
+        await this.$store.dispatch("fetchUserCommunityPosts", {
+          userId: this.$store.getters.getUser,
+          communityId: this.$route.params.communityId,
+        });
       } else {
         await this.$store.dispatch(
           "fetchUserPostsForAllCommunities",

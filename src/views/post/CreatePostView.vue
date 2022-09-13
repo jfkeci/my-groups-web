@@ -12,32 +12,32 @@
           >
             <b-form-select
               id="create-post-community-dropdown-input"
-              v-model="selectedCommunity"
+              v-model="form.community"
               :options="communities"
               size="sm"
             ></b-form-select>
           </b-form-group>
 
           <b-form-group
+            label-for="create-post-input-1"
+            id="create-post-input-group-1"
             :label="$t('Title')"
             class="ml-5 mr-5"
-            id="create-post-input-group-1"
-            label-for="create-post-input-1"
           >
             <b-form-input
+              :placeholder="$t('Title')"
               id="create-post-input-1"
               v-model="form.title"
-              :placeholder="$t('Title')"
               size="sm"
               required
             ></b-form-input>
           </b-form-group>
 
           <b-form-group
-            class="ml-5 mr-5"
-            :label="$t('Description')"
-            id="create-post-input-group-2"
             label-for="create-post-input-2"
+            id="create-post-input-group-2"
+            :label="$t('Description')"
+            class="ml-5 mr-5"
           >
             <b-form-textarea
               :placeholder="$t('Description')"
@@ -48,10 +48,10 @@
           </b-form-group>
 
           <b-form-group
+            label-for="create-post-input-4"
+            id="create-post-input-group-4"
             :label="$t('image')"
             class="ml-5 mr-5"
-            id="create-post-input-group-4"
-            label-for="create-post-input-4"
           >
             <b-form-file
               :placeholder="$t('chooseOrDropImage')"
@@ -67,27 +67,27 @@
           </b-form-group>
 
           <b-form-group
+            label-for="create-post-input-3"
+            id="create-post-input-group-3"
             :label="$t('postType')"
             class="ml-5 mr-5"
-            id="create-post-input-group-3"
-            label-for="create-post-input-3"
           >
             <small>{{ postTypeDescription }}</small>
             <b-form-select
               :options="postTypeOptions"
-              v-model="selectedType"
+              v-model="form.type"
               size="sm"
             ></b-form-select>
           </b-form-group>
 
           <EventDatePicker
-            v-if="selectedType == 'event'"
             @set-event-date="setEventDate"
+            v-if="form.type == 'event'"
           />
           <PollOptionsCreator
-            v-if="selectedType == 'poll'"
-            @set-option-values="setPollData"
             @are-options-valid="pollOptionsValidity"
+            @set-option-values="setPollData"
+            v-if="form.type == 'poll'"
           />
 
           <b-button @click="createPost()" variant="primary" block>
@@ -96,30 +96,42 @@
         </b-form>
       </b-card>
       <b-card
+        :header="$t('createCommunity')"
         v-if="!communities.length"
         class="mt-2"
-        header="Create communities"
       >
-        <h4>You dont belong to any community</h4>
-        <p>
-          You can create your own community, or ask someone to add you to their
-          community
-        </p>
+        <h4>{{ $t("cantCreatePost") }}</h4>
+        <p>{{ $t("createOrJoinCommunity") }}</p>
 
         <b-button
-          block
-          class="m-3"
-          variant="success"
-          size="sm"
           to="/create-community"
+          variant="success"
+          class="m-3"
+          size="sm"
+          block
         >
-          Create community
+          {{ $t("createCommunity") }}
         </b-button>
       </b-card>
     </b-card-group>
-    <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
-      <pre class="m-0">{{ postTypes }}</pre>
-    </b-card>
+
+    <b-row v-if="!$dbg">
+      <b-col>
+        <b-card class="mt-3" header="Communities">
+          <pre class="m-0">{{ communities }}</pre>
+        </b-card>
+      </b-col>
+      <b-col>
+        <b-card class="mt-3" header="Form">
+          <pre class="m-0">{{ form }}</pre>
+        </b-card>
+      </b-col>
+      <b-col>
+        <b-card class="mt-3" header="Post Types">
+          <pre class="m-0">{{ postTypes }}</pre>
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -140,17 +152,17 @@ export default {
         title: "Nova informativna objava",
         date: null,
         image: null,
+        type: "info",
+        community: null,
       },
-      selectedCommunity: null,
-      selectedType: "info",
       pollData: null,
       validPollOptions: false,
     };
   },
   async mounted() {
-    /* if (!this.isLoggedIn) {
+    if (!this.isLoggedIn) {
       this.$store.commit("setView", "/login");
-    } */
+    }
 
     if (this.$route.params.communityId) {
       this.selectedCommunity = this.$route.params.communityId;
@@ -161,7 +173,7 @@ export default {
       return this.$store.getters.getPostTypes;
     },
     postTypeDescription() {
-      const type = this.postTypes.find((pt) => pt.type == this.selectedType);
+      const type = this.postTypes.find((pt) => pt.type == this.form.type);
 
       return type ? this.$t(type.description) : "";
     },
@@ -190,8 +202,8 @@ export default {
     communities: {
       handler: function () {
         if (!this.$route.params.communityId) {
-          if (this.communities.length) {
-            this.selectedCommunity = this.communities[0]["value"];
+          if (this.communities.length > 0) {
+            this.setSelectedCommunity(this.communities[0]["value"]);
           }
         }
       },
@@ -208,39 +220,32 @@ export default {
     pollOptionsValidity(validPollOptions) {
       this.validPollOptions = validPollOptions;
     },
+    setSelectedCommunity(communityId) {
+      this.form.community = communityId;
+    },
     createPost() {
-      if (!this.title.length) {
-        this.setMessage("Title required", "danger");
-        return;
-      }
+      let newPostData;
 
-      if (!this.selectedType) {
+      if (!this.form.type) {
         this.setMessage("Please select a post type", "danger");
         return;
       }
 
-      if (this.selectedType == "info") {
-        this.$store.dispatch("createCommunityPost", {
-          title: this.form.title,
-          body: this.form.body ?? "",
-          type: this.selectedType,
-          date: this.date ?? null,
-          createdBy: Number(this.$store.getters.getUser),
-        });
+      let createdBy = Number(this.$store.getters.getUser);
+
+      if (this.form.type == "info" || this.form.type == "event") {
+        newPostData = { ...this.form, createdBy };
       }
 
-      if (this.selectedType == "poll") {
-        this.$store.dispatch("createCommunityPollPost", {
-          post: {
-            title: this.form.title,
-            body: this.form.body ?? "",
-            type: this.selectedType,
-            createdBy: Number(this.$store.getters.getUser),
-            date: null,
-          },
-          options: this.pollData,
-        });
+      if (this.form.type == "poll") {
+        newPostData = {
+          ...this.form,
+          createdBy,
+          options: this.pollData.options.map((o) => ({ option: o.title })),
+        };
       }
+
+      this.$store.dispatch("createCommunityPost", newPostData);
     },
   },
 };

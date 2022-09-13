@@ -83,6 +83,8 @@
   "eventDescription": "Publish an event",
   "infoDescription": "Publish some information",
   "pollDescription": "Publish a poll",
+  "cantCreatePost":"You can't create a post because you don't belong to any community",
+  "createOrJoinCommunity":"You can create your own community, or ask someone to add you to their community",
   "errors": {
     "MYBnfe001": "No user found",
     "MYBnfe002": "No users found",
