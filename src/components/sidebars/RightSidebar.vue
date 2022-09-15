@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!--     <b-button
-      v-if="isLoggedIn && $route.params.communityId"
+    <b-button
+      v-if="isLoggedIn && isUserSuperAdmin && $route.params.communityId"
       variant="success"
       class="mt-1 mb-1"
       block
-      :to="`/community/${$route.params.communityId}/create-post`"
+      :to="`/community/${$route.params.communityId}/edit`"
     >
-      Add post
-    </b-button> -->
+      {{ $t("edit") }}
+    </b-button>
 
     <CommunityInfo />
   </div>
@@ -20,6 +20,11 @@ export default {
   name: "RightSidebar",
   components: {
     CommunityInfo,
+  },
+  computed: {
+    isUserSuperAdmin() {
+      return this.$store.getters.isUserSuperAdmin;
+    },
   },
 };
 </script>

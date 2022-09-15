@@ -95,7 +95,7 @@
             id="register-input-group-7"
             :label="$t('newSuperAdmin?')"
             label-for="register-input-7"
-            v-if="isAdmin"
+            v-if="isUserSuperAdmin"
           >
             <b-form-checkbox
               id="register-is-admin-checkbox"
@@ -148,12 +148,12 @@ export default {
   },
   computed: {
     adminCreatingNewUser() {
-      return this.isLoggedIn && this.$store.getters.isUserAdmin;
+      return this.isLoggedIn && this.$store.getters.isUserSuperAdmin;
     },
   },
   watch: {
-    isAdmin() {
-      this.form.isAdmin = this.$store.getters.isUserAdmin;
+    isUserSuperAdmin() {
+      this.form.isAdmin = this.$store.getters.isUserSuperAdmin;
     },
   },
   methods: {

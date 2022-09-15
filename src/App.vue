@@ -32,9 +32,5 @@ export default {
     LeftSidebar,
     RightSidebar,
   },
-  created() {
-    console.log("app.this.$store.getters.getView", this.$store.getters.getView);
-    console.log("App.created.token", this.$store.getters.getToken);
-  },
 };
 </script>

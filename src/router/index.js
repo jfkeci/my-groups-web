@@ -6,6 +6,7 @@ import UserLoginView from "../views/auth/UserLoginView.vue";
 import CreatePostView from "../views/post/CreatePostView.vue";
 import UserProfileView from "../views/auth/UserProfileView.vue";
 import UserRegisterView from "../views/auth/UserRegisterView.vue";
+import EditCommunityView from "../views/community/EditCommunityView.vue";
 import CreateCommunityView from "../views/community/CreateCommunityView.vue";
 
 Vue.use(VueRouter);
@@ -17,44 +18,49 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/login",
     name: "login",
+    path: "/login",
     component: UserLoginView,
   },
   {
-    path: "/register",
     name: "register",
+    path: "/register",
     component: UserRegisterView,
   },
   {
-    path: "/profile",
     name: "profile",
+    path: "/profile",
     component: UserProfileView,
   },
   {
+    name: "dashboard",
+    component: DashboardView,
     path: "/dashboard/:communityId",
-    name: "dashboard",
-    component: DashboardView,
   },
   {
+    name: "dashboard",
     path: "/dashboard",
-    name: "dashboard",
     component: DashboardView,
   },
   {
-    path: "/create-community",
     name: "create-community",
+    path: "/create-community",
     component: CreateCommunityView,
   },
   {
-    path: "/community/:communityId/create-post",
-    name: "create-community-post",
     component: CreatePostView,
+    name: "create-community-post",
+    path: "/community/:communityId/create-post",
   },
   {
     path: "/create-post",
-    name: "create-community-post",
     component: CreatePostView,
+    name: "create-community-post",
+  },
+  {
+    path: "/update-community/:communityId",
+    component: EditCommunityView,
+    name: "update-community",
   },
 ];
 

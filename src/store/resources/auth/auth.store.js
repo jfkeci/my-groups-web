@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default {
   state: {
-    isAdmin: false,
+    isUserSuperAdmin: false,
     user: null,
     username: null,
     token: null,
@@ -30,8 +30,8 @@ export default {
         ? localStorage.setItem("user", user)
         : localStorage.removeItem("user");
     },
-    setIsAdmin(state, isAdmin) {
-      state.isAdmin = isAdmin;
+    setIsUserSuperAdmin(state, isUserSuperAdmin) {
+      state.isUserSuperAdmin = isUserSuperAdmin;
     },
     setUsername(state, username) {
       state.username = username;
@@ -63,7 +63,7 @@ export default {
   getters: {
     getUser: (state) => state.user,
     getUsername: (state) => state.username,
-    isUserAdmin: (state) => state.isAdmin,
+    isUserSuperAdmin: (state) => state.isUserSuperAdmin,
     getToken: (state) => state.token,
     getLoggedInState: (state) => {
       if (

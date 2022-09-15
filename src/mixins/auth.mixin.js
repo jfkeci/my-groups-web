@@ -3,8 +3,8 @@ export default {
     isLoggedIn() {
       return this.$store.getters.getLoggedInState;
     },
-    isAdmin() {
-      return this.$store.getters.isUserAdmin;
+    isUserSuperAdmin() {
+      return this.$store.getters.isUserSuperAdmin;
     },
   },
 };

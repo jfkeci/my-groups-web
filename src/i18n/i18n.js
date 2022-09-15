@@ -5,8 +5,6 @@ import Vue from "vue";
 
 Vue.use(VueI18n);
 
-console.log(en, hr);
-
 export const i18n = new VueI18n({
   locale: localStorage.getItem("lang") ?? "hr",
   messages: {

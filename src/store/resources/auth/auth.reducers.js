@@ -2,8 +2,6 @@ import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
 export const registerUser = async ({ commit }, user) => {
-  commit("setLoading", true);
-
   try {
     const res = await axios.post(`/auth/register`, user);
 
@@ -11,7 +9,7 @@ export const registerUser = async ({ commit }, user) => {
       if (res.data.id) {
         commit("setUser", res.data.id);
         commit("setToken", res.data.token);
-        commit("setIsAdmin", res.data.isAdmin);
+        commit("setIsUserSuperAdmin", res.data.isUserSuperAdmin);
         commit("setUsername", res.data.username);
         commit("setMessage", {
           text: i18n.t("userSuccessfullyRegistered"),
@@ -41,7 +39,7 @@ export const registerUser = async ({ commit }, user) => {
 
 export const loginUser = async ({ commit }, loginData) => {
   console.log("loginData", loginData);
-  commit("setLoading", true);
+
   try {
     const res = await axios.post(`/auth/login`, loginData);
 
@@ -49,7 +47,7 @@ export const loginUser = async ({ commit }, loginData) => {
       if (res.data.token) {
         commit("setUser", res.data.id);
         commit("setToken", res.data.token);
-        commit("setIsAdmin", res.data.isAdmin);
+        commit("setIsUserSuperAdmin", res.data.isUserSuperAdmin);
         commit("setUsername", res.data.username);
         commit("setMessage", {
           text: i18n.t(`userSuccessfullyLoggedIn`),

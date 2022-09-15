@@ -2,7 +2,6 @@ import axios from "axios";
 import { i18n } from "../../../i18n/i18n";
 
 export const fetchUserCommunityPosts = async ({ commit }, data) => {
-  commit("setLoading", true);
   try {
     const res = await axios.get(
       `/user/${data.userId}/posts/${data.communityId}`
@@ -40,7 +39,6 @@ export const fetchUserCommunityPosts = async ({ commit }, data) => {
 };
 
 export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
-  commit("setLoading", true);
   try {
     const res = await axios.get(`/user/${userId}/posts`);
 
@@ -74,7 +72,6 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
 };
 
 export const createCommunityPost = async ({ commit }, data) => {
-  commit("setLoading", true);
   console.log("createCommunityPost.data", data);
   try {
     const res = await axios.post(`/posts`, data);
