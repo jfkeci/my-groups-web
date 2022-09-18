@@ -93,6 +93,7 @@
   "removeFromCommunity": "Izbaci iz zajednice",
   "unsuccessfullCommunityUpdate": "Neuspješno ažuriranje zajednice",
   "successfullCommunityUpdate": "Zajednica uspješno ažurirana",
+  "delete": "Obriši",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",

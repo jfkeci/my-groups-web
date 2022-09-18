@@ -92,6 +92,7 @@
   "removeFromCommunity": "Remove from community",
   "unsuccessfullCommunityUpdate": "Failed to update community",
   "successfullCommunityUpdate": "Community successfully updated",
+  "delete": "Delete",
   "errors": {
     "MYBnfe001": "No user found",
     "MYBnfe002": "No users found",

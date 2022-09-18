@@ -7,7 +7,7 @@ export const createPostComment = async ({ commit }, data) => {
       ...data,
     });
 
-    if (res.status == 200 && res.data) {
+    if (res.status == 200) {
       commit("setPosts", res.data);
     }
   } catch (err) {
@@ -25,20 +25,14 @@ export const createPostComment = async ({ commit }, data) => {
 
 export const updatePostComment = async ({ commit }, data) => {
   try {
-    let updatedPostComment;
-
     const res = await axios.patch(
-      `/posts/${data.postId}/comments/${data.commentId}`,
-      data.data
+      `/comments/${data.post}/comment/${data.comment}`,
+      data
     );
 
-    if (res.status == 200 && res.data) {
-      updatedPostComment = res.data;
-    } else {
-      updatedPostComment = null;
+    if (res.status == 200) {
+      commit("setPosts", res.data);
     }
-
-    return updatedPostComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
     if (err.response.status > 299) {
@@ -57,13 +51,12 @@ export const deletePostComment = async ({ commit }, params) => {
     let deletedPost;
 
     const res = await axios.delete(
-      `/posts/${params.postId}/comments/${params.commentId}`
+      `/comments/${params.post}/comment/${params.comment}`,
+      { community: params.community }
     );
 
-    if (res.status == 200 && res.data) {
-      deletedPost = res.data;
-    } else {
-      deletedPost = null;
+    if (res.status == 200) {
+      commit("setPosts", res.data);
     }
 
     return deletedPost;
@@ -86,7 +79,7 @@ export const getPostComments = async ({ commit }, postId) => {
 
     const res = await axios.get(`/posts/${postId}/comments`);
 
-    if (res.status == 200 && res.data) {
+    if (res.status == 200) {
       postWithComments = res.data;
     } else {
       postWithComments = null;
@@ -114,7 +107,7 @@ export const getPostComment = async ({ commit }, params) => {
       `/posts/${params.postId}/comments/${params.commentId}`
     );
 
-    if (res.status == 200 && res.data) {
+    if (res.status == 200) {
       postComment = res.data;
     } else {
       postComment = null;
@@ -131,5 +124,15 @@ export const getPostComment = async ({ commit }, params) => {
         type: "danger",
       });
     }
+  }
+};
+
+export const isUserCommentOwner = async (data) => {
+  try {
+    const res = await axios.post(`/comments/check/is-user-comment-owner`, data);
+
+    return res.data;
+  } catch (err) {
+    console.log("getPostComments.ERR", err);
   }
 };
