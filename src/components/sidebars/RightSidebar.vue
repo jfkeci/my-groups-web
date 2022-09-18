@@ -21,11 +21,6 @@ export default {
   components: {
     CommunityInfo,
   },
-  computed: {
-    isUserSuperAdmin() {
-      return this.$store.getters.isUserSuperAdmin;
-    },
-  },
 };
 </script>
 

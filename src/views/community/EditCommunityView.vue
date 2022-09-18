@@ -135,9 +135,6 @@ export default {
     isUserCommunityMember() {
       return this.$store.getters.getIsUserCommunityMember;
     },
-    isUserCommunityAdmin() {
-      return this.$store.getters.getIsUserCommunityAdmin;
-    },
     communityUsers() {
       return this.$store.getters.getCommunityUsers;
     },
