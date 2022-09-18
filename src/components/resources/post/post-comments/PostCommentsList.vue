@@ -1,45 +1,46 @@
 <template>
-  <div>
+  <b-card :title="$t('comments')">
     <b-list-group v-if="!showMore && comments.length">
-      <PostCommentsListItem />
-      <b-list-group-item class="d-flex align-items-center">
-        <b-button size="sm" @click="showMore = true" block>
-          {{ $t("showMore") }}
-        </b-button>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center">
-        <b-input-group class="mt-3">
-          <b-form-input size="sm" v-model="commentText"></b-form-input>
-          <b-input-group-append>
-            <b-button variant="primary" size="sm">
-              {{ $t("addComment") }}
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-list-group-item>
+      <div>
+        <PostCommentsListItem :comment="comments[0]" />
+      </div>
     </b-list-group>
 
     <b-list-group v-if="showMore && comments.length">
-      <PostCommentsListItem />
-      <PostCommentsListItem />
-      <b-list-group-item class="d-flex align-items-center">
-        <b-button size="sm" @click="showMore = false" block>
-          {{ $t("showLess") }}
-        </b-button>
-      </b-list-group-item>
-
-      <b-list-group-item class="d-flex align-items-center">
-        <b-input-group class="mt-3">
-          <b-form-input size="sm" v-model="commentText"></b-form-input>
-          <b-input-group-append>
-            <b-button variant="primary" size="sm">
-              {{ $t("addComment") }}
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-list-group-item>
+      <div v-for="comment in comments" :key="comment.id">
+        <PostCommentsListItem :comment="comment" />
+      </div>
     </b-list-group>
-  </div>
+
+    <b-button
+      size="sm"
+      class="mt-2 ml-3 mr-3"
+      v-if="!showMore"
+      @click="showMore = true"
+      block
+    >
+      {{ $t("showMore") }}
+    </b-button>
+
+    <b-button
+      size="sm"
+      class="mt-2 ml-3 mr-3"
+      v-if="showMore"
+      @click="showMore = false"
+      block
+    >
+      {{ $t("showLess") }}
+    </b-button>
+
+    <b-input-group class="mt-3">
+      <b-form-input size="sm" v-model="commentText"></b-form-input>
+      <b-input-group-append>
+        <b-button @click="addPostComment" variant="primary" size="sm">
+          {{ $t("addComment") }}
+        </b-button>
+      </b-input-group-append>
+    </b-input-group>
+  </b-card>
 </template>
 
 <script>
@@ -54,12 +55,34 @@ export default {
       type: Array,
       default: () => [],
     },
+    postId: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
       showMore: false,
       commentText: "",
     };
+  },
+  methods: {
+    addPostComment() {
+      const createdBy = Number(this.$store.getters.getUser);
+
+      const newPostCommentData = {
+        createdBy,
+        post: Number(this.postId),
+        text: this.commentText,
+        community: Number(this.$route.params.communityId) ?? null,
+      };
+
+      this.$store.dispatch("createPostComment", newPostCommentData);
+
+      this.commentText = "";
+
+      this.$emit("new-comment-added");
+    },
   },
 };
 </script>

@@ -19,7 +19,8 @@
 
       <br />
 
-      <PostCommentsList />
+      <PostCommentsList :comments="post.comments" :postId="post.id" />
+
       <template #footer>
         <div class="d-flex align-items-center">
           <small class="ml-1">
@@ -27,6 +28,9 @@
           </small>
         </div>
       </template>
+      <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
+        <pre class="m-0">{{ post }}</pre>
+      </b-card>
     </b-card>
   </div>
 </template>

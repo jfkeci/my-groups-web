@@ -3,7 +3,7 @@
     <div v-for="post in posts" :key="post.id">
       <PostsListItem :post="post" />
     </div>
-    <b-card class="mt-3" header="Form Data Result" v-if="!$dbg">
+    <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
       <pre class="m-0">{{ posts }}</pre>
     </b-card>
   </div>
@@ -24,7 +24,7 @@ export default {
   },
   watch: {
     posts() {
-      console.log("this.posts", this.posts);
+      console.log("PostsList.watch.posts", this.posts);
     },
   },
 };

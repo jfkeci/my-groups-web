@@ -3,71 +3,13 @@ import axios from "axios";
 
 export const createPostComment = async ({ commit }, data) => {
   try {
-    let newPostComment;
-
-    const res = await axios.post(`/posts/${data.postId}/comments`, data.data);
-
-    if (res.status == 200 && res.data) {
-      newPostComment = res.data;
-    } else {
-      newPostComment = null;
-    }
-
-    return newPostComment;
-  } catch (err) {
-    console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
-  }
-};
-
-export const getPostComments = async ({ commit }, postId) => {
-  try {
-    let postWithComments;
-
-    const res = await axios.get(`/posts/${postId}/comments`);
+    const res = await axios.post(`/comments/${data.post}`, {
+      ...data,
+    });
 
     if (res.status == 200 && res.data) {
-      postWithComments = res.data;
-    } else {
-      postWithComments = null;
+      commit("setPosts", res.data);
     }
-
-    return postWithComments;
-  } catch (err) {
-    console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
-  }
-};
-
-export const getPostComment = async ({ commit }, params) => {
-  try {
-    let postComment;
-
-    const res = await axios.get(
-      `/posts/${params.postId}/comments/${params.commentId}`
-    );
-
-    if (res.status == 200 && res.data) {
-      postComment = res.data;
-    } else {
-      postComment = null;
-    }
-
-    return postComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
     if (err.response.status > 299) {
@@ -125,6 +67,60 @@ export const deletePostComment = async ({ commit }, params) => {
     }
 
     return deletedPost;
+  } catch (err) {
+    console.log("getPostComments.ERR", err);
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
+    }
+  }
+};
+
+export const getPostComments = async ({ commit }, postId) => {
+  try {
+    let postWithComments;
+
+    const res = await axios.get(`/posts/${postId}/comments`);
+
+    if (res.status == 200 && res.data) {
+      postWithComments = res.data;
+    } else {
+      postWithComments = null;
+    }
+
+    return postWithComments;
+  } catch (err) {
+    console.log("getPostComments.ERR", err);
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
+    }
+  }
+};
+
+export const getPostComment = async ({ commit }, params) => {
+  try {
+    let postComment;
+
+    const res = await axios.get(
+      `/posts/${params.postId}/comments/${params.commentId}`
+    );
+
+    if (res.status == 200 && res.data) {
+      postComment = res.data;
+    } else {
+      postComment = null;
+    }
+
+    return postComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
     if (err.response.status > 299) {

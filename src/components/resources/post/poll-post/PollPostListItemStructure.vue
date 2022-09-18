@@ -11,6 +11,11 @@
         </span>
         <b-badge
           id="show-btn"
+          :variant="
+            option.poll_option_votes.some((v) => v.users.id == currentUser)
+              ? `primary`
+              : `success`
+          "
           @click="$bvModal.show(`poll-votes-modal-${option.id ?? ''}`)"
           >{{
             option.poll_option_votes.some((v) => v.users.id == currentUser)

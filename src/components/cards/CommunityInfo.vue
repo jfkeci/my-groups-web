@@ -12,7 +12,29 @@
         {{ community.description ?? "" }}
       </b-card-text>
 
-      <b-button variant="primary" class="mt-1" block>{{ $t("edit") }}</b-button>
+      <b-row>
+        <b-col>
+          <b-button
+            :to="`/update-community/${this.$route.params.communityId}`"
+            variant="primary"
+            class="mt-1"
+            block
+          >
+            {{ $t("edit") }}
+          </b-button>
+        </b-col>
+        <b-col>
+          <b-button
+            :to="`/community/${$route.params.communityId}/info`"
+            v-if="isLoggedIn && $route.params.communityId"
+            variant="success"
+            class="mt-1 mb-1"
+            block
+          >
+            {{ $t("moreInformation") }}
+          </b-button>
+        </b-col>
+      </b-row>
     </b-card>
   </div>
 </template>

@@ -19,7 +19,7 @@
         block
         @click="$bvModal.hide(`confirmation-modal-${id ?? ''}`)"
       >
-        Close
+        {{ $t("close") }}
       </b-button>
     </b-modal>
   </div>

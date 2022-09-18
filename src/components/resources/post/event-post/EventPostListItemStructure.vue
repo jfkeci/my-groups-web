@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p class="m-3" v-if="$dbg">dbg ID:{{ post.id }}</p>
     <b-form-datepicker
       id="choose-event-date-input-disabled"
       :value="post.date"
@@ -16,6 +15,11 @@
       >
         <b-badge
           id="show-btn"
+          :variant="
+            post.event_users.some((eu) => eu.id == currentUser)
+              ? 'success'
+              : 'primary'
+          "
           @click="$bvModal.show(`event-users-modal-${post.id ?? ''}`)"
         >
           {{ post.event_users.length }}
@@ -68,6 +72,11 @@ export default {
     post: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.getUser;
     },
   },
 };

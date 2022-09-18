@@ -13,7 +13,7 @@
       <b-list-group>
         <b-list-group-item href="#foobar">
           <b-button variant="primary" block to="/create-community">
-            <b>+ {{ $t("add") }}</b>
+            <b>+ {{ $t("createCommunity") }}</b>
           </b-button>
         </b-list-group-item>
         <b-list-group-item to="/dashboard">

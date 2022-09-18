@@ -77,6 +77,15 @@
           <b-avatar class="mr-3"></b-avatar>
           <span class="mr-auto">
             {{ `${user.firstName} ${user.lastName}` }}
+
+            <b-button
+              v-if="isUserCommunityAdmin"
+              variant="danger"
+              class="ml-3"
+              size="sm"
+            >
+              {{ $t("removeFromCommunity") }}
+            </b-button>
           </span>
           <b-badge>{{ formattedDate(user.createdAt) }}</b-badge>
         </b-list-group-item>
@@ -132,6 +141,9 @@ export default {
     }
   },
   computed: {
+    isUserCommunityAdmin() {
+      return this.$store.getters.getIsUserCommunityAdmin;
+    },
     isUserCommunityMember() {
       return this.$store.getters.getIsUserCommunityMember;
     },

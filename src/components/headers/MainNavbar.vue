@@ -45,7 +45,7 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <LanguageDropdown v-if="false" />
+          <LanguageDropdown />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

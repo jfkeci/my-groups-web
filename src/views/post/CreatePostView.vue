@@ -115,7 +115,7 @@
       </b-card>
     </b-card-group>
 
-    <b-row v-if="!$dbg">
+    <b-row v-if="$dbg">
       <b-col>
         <b-card class="mt-3" header="Communities">
           <pre class="m-0">{{ communities }}</pre>

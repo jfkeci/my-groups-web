@@ -136,3 +136,36 @@ export const isUserCommunityMember = async ({ commit }, data) => {
     return false;
   }
 };
+
+export const updateCommunity = async ({ commit }, data) => {
+  try {
+    const res = await axios.patch(`/communities/${data.communityId}`, {
+      user: data.userId,
+      title: data.title,
+      description: data.description,
+    });
+
+    if (res.status == 200) {
+      commit("setView", `/update-community/${data.communityId}`);
+      commit("setMessage", {
+        text: i18n.t("successfullCommunityUpdate"),
+        type: "success",
+      });
+    } else {
+      commit("setMessage", {
+        text: i18n.t("unsuccessfullCommunityUpdate"),
+        type: "danger",
+      });
+    }
+  } catch (err) {
+    console.log("updateCommunity.err", err);
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
+    }
+  }
+};

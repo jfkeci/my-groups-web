@@ -4,14 +4,15 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import auth from "./resources/auth/auth.store.js";
-import communities from "./resources/communities/communities.store.js";
 import posts from "./resources/posts/posts.store.js";
+import comments from "./resources/comments/comments.store.js";
+import communities from "./resources/communities/communities.store.js";
 
-/* eslint-disable no-new */
 const store = new Vuex.Store({
   modules: {
     auth,
     posts,
+    comments,
     communities,
   },
   state: {
