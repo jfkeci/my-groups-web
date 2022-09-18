@@ -21,7 +21,7 @@ export default {
 
       console.log("localStorage.getItem(token)", localStorage.getItem("token"));
 
-      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      axios.defaults.headers.common = { authorization: `Bearer ${token}` };
     },
     setUser(state, user) {
       state.user = user;
@@ -74,7 +74,7 @@ export default {
       } else {
         state.token = localStorage.getItem("token");
         axios.defaults.headers.common = {
-          Authorization: `bearer ${state.token}`,
+          authorization: `bearer ${state.token}`,
         };
       }
 
