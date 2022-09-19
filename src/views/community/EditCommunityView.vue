@@ -188,11 +188,6 @@ export default {
       return dateString;
     },
     removeUserFromCommunity(userId) {
-      console.log({
-        user: userId,
-        community: Number(this.$route.params.communityId),
-      });
-
       this.$store.dispatch("removeUserFromCommunity", {
         user: userId,
         community: Number(this.$route.params.communityId),

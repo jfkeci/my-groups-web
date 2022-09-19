@@ -87,12 +87,10 @@ export default {
       }
     },
     addUserToCommunity(userId) {
-      console.log({
-        user: userId,
+      this.$store.dispatch("addUserToCommunity", {
+        user: Number(userId),
         community: Number(this.$route.params.communityId),
       });
-
-      this.$store.dispatch("addUserToCommunity");
 
       this.$emit("user-added-to-community");
     },

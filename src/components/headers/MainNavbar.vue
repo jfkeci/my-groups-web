@@ -37,9 +37,7 @@
             <template #button-content>
               <em>{{ $t("User") }}</em>
             </template>
-            <b-dropdown-item v-if="isLoggedIn" :to="`/profile/${userId}`">
-              {{ $t("profile") }}
-            </b-dropdown-item>
+
             <b-dropdown-item v-if="isLoggedIn" @click="logout">
               {{ $t("Logout") }}
             </b-dropdown-item>
