@@ -1,25 +1,81 @@
 <template>
-  <div>
-    <b-button
-      v-if="isLoggedIn && isUserSuperAdmin && $route.params.communityId"
-      variant="success"
-      class="mt-1 mb-1"
-      block
-      :to="`/community/${$route.params.communityId}/edit`"
+  <div v-if="community">
+    <b-card
+      :title="community.title"
+      :img-src="community.image ?? 'https://picsum.photos/200/300'"
+      img-top
+      tag="article"
+      style="max-width: 20rem"
+      class="mb-2"
     >
-      {{ $t("edit") }}
-    </b-button>
+      <b-card-text>
+        {{ community.description ?? "" }}
+      </b-card-text>
 
-    <CommunityInfo />
+      <b-row>
+        <b-col>
+          <b-button
+            :to="`/update-community/${this.$route.params.communityId}`"
+            v-if="isUserCommunityAdmin"
+            variant="primary"
+            class="mt-1"
+            block
+          >
+            {{ $t("edit") }}
+          </b-button>
+        </b-col>
+        <b-col>
+          <b-button
+            :to="`/community/${$route.params.communityId}/info`"
+            v-if="isLoggedIn && $route.params.communityId"
+            variant="success"
+            class="mt-1 mb-1"
+            block
+          >
+            {{ $t("moreInformation") }}
+          </b-button>
+        </b-col>
+      </b-row>
+    </b-card>
   </div>
 </template>
 
 <script>
-import CommunityInfo from "../cards/CommunityInfo.vue";
 export default {
   name: "RightSidebar",
-  components: {
-    CommunityInfo,
+  async created() {
+    if (this.$route.params.communityId) {
+      this.$store.dispatch(
+        "fetchCommunity",
+        Number(this.$route.params.communityId)
+      );
+    }
+
+    await this.$store.dispatch("isUserCommunityAdmin", {
+      user: Number(this.$store.getters.getUser),
+      community: Number(this.$route.params.communityId),
+    });
+  },
+  computed: {
+    community() {
+      return this.$store.getters.getCommunity;
+    },
+    isUserCommunityAdmin() {
+      return this.$store.getters.getIsUserCommunityAdmin;
+    },
+  },
+  watch: {
+    $route: {
+      handler: function () {
+        if (this.$route.params.communityId) {
+          this.$store.dispatch(
+            "fetchCommunity",
+            Number(this.$route.params.communityId)
+          );
+        }
+      },
+      deep: true,
+    },
   },
 };
 </script>
