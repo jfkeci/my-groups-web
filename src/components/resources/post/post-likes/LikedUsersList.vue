@@ -10,6 +10,9 @@
         <span class="mr-auto">
           {{ `${like.users.firstName} ${like.users.lastName}` }}
         </span>
+        <b-badge v-if="like.users.id == Number($store.getters.getUser)">{{
+          $t("you")
+        }}</b-badge>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -22,11 +25,6 @@ export default {
     postLikes: {
       type: Array,
       default: () => [],
-    },
-  },
-  watch: {
-    postLikes() {
-      console.log("LikedUsersList.postlikes", this.postLikes);
     },
   },
 };

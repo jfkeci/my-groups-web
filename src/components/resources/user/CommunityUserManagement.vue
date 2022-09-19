@@ -50,7 +50,7 @@
             v-if="
               user.communities.some(
                 (c) => c == Number($route.params.communityId)
-              )
+              ) && Number(user.id) != Number(createdBy)
             "
             variant="danger"
           >
@@ -69,7 +69,8 @@ import axios from "axios";
 export default {
   name: "CommunityUserManagement",
   props: {
-    communityUsers: { type: Array, default: () => [] },
+    community: { type: Number, default: null },
+    createdBy: { type: Number, default: null },
   },
   data() {
     return {
@@ -94,7 +95,6 @@ export default {
 
       this.$emit("user-added-to-community");
     },
-
     removeUserFromCommunity(userId) {
       this.$store.dispatch("removeUserFromCommunity", {
         user: Number(userId),

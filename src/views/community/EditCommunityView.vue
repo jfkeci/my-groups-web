@@ -106,7 +106,10 @@
 
       <hr />
 
-      <CommunityUserManagement />
+      <CommunityUserManagement
+        :community="Number($route.params.communityId)"
+        :createdBy="Number(createdBy)"
+      />
     </div>
 
     <b-card class="mt-3" header="Form Data Result" v-if="$dbg">

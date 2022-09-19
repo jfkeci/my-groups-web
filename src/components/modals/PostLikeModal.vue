@@ -2,8 +2,13 @@
   <div>
     <b-button-group>
       <b-button size="sm">
-        <b-icon icon="hand-thumbs-up-fill" aria-hidden="true"></b-icon>
+        <b-icon
+          @click="togglePostLike(post.id)"
+          :icon="isPostLiked ? 'hand-thumbs-up-fill' : 'hand-thumbs-up'"
+          aria-hidden="true"
+        ></b-icon>
       </b-button>
+
       <b-button
         size="sm"
         id="show-btn"
@@ -15,11 +20,14 @@
 
     <b-modal :id="`user-likes-modal-${post.id ?? ''}`" hide-footer>
       <template #modal-title> {{ $t("postLikes") }} </template>
+
       <LikedUsersList :postLikes="post.post_likes" />
+
       <b-button
+        @click="$bvModal.hide(`user-likes-modal-${post.id ?? ''}`)"
+        v-if="post.post_likes.length"
         class="mt-3"
         block
-        @click="$bvModal.hide(`user-likes-modal-${post.id ?? ''}`)"
       >
         {{ $t("close") }}
       </b-button>
@@ -39,8 +47,15 @@ export default {
     togglePostLike() {
       this.$store.dispatch("togglePostLike", {
         post: Number(this.post.id),
-        user: Number(this.$store.getters.getUsrer),
+        user: Number(this.$store.getters.getUser),
       });
+    },
+  },
+  computed: {
+    isPostLiked() {
+      return this.post.post_likes.some(
+        (pl) => Number(pl.users.id) == Number(this.$store.getters.getUser)
+      );
     },
   },
 };
