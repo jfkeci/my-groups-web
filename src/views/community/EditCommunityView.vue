@@ -81,6 +81,7 @@
             <!-- isUserCommunityAdmin || isUserSuperAdmin -->
 
             <ConfirmationModal
+              v-if="user.id != createdBy"
               :buttonText="$t('removeFromCommunity')"
               :title="$t('removeUserConfirmation')"
               action="removeUserFromCommunity"
@@ -94,7 +95,12 @@
               }"
             />
           </span>
-          <b-badge>{{ formattedDate(user.createdAt) }}</b-badge>
+          <b-badge v-if="user.id != createdBy">
+            {{ $t("memberFrom") }} {{ formattedDate(user.createdAt) }}
+          </b-badge>
+          <b-badge v-if="user.id == createdBy">
+            {{ $t("adminFrom") }} {{ formattedDate(user.createdAt) }}
+          </b-badge>
         </b-list-group-item>
       </b-list-group>
 
@@ -161,6 +167,9 @@ export default {
     community() {
       return this.$store.getters.getCommunity;
     },
+    createdBy() {
+      return this.community ? this.community.createdBy : null;
+    },
   },
   watch: {
     community() {
@@ -170,7 +179,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.form);
       this.$store.dispatch("updateCommunity", this.form);
     },
     isCurrentUser(userId) {
@@ -179,9 +187,7 @@ export default {
     formattedDate(date) {
       const formatted = new Date(date);
 
-      const dateString = `${this.$t(
-        "since"
-      )}: ${formatted.getDay()}.${formatted.getMonth()}.${formatted.getFullYear()}.`;
+      const dateString = `${formatted.getDay()}.${formatted.getMonth()}.${formatted.getFullYear()}.`;
 
       return dateString;
     },

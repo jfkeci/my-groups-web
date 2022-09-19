@@ -102,6 +102,8 @@
   "korisnika": "Korisnika",
   "remove": "Ukloni",
   "removeUserConfirmation": "Jeste li sigurni da zelite ukloniti korisnika iz zajednice?",
+  "adminFrom": "Admin od: ",
+  "memberFrom": "Član od: ",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",

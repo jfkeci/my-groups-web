@@ -101,6 +101,8 @@
   "korisnika": "Users",
   "remove": "Remove",
   "removeUserConfirmation": "Are you sure you want to remove this user from the community?",
+  "adminFrom": "Admin from: ",
+  "memberFrom": "Member from: ",
   "errors": {
     "MYBnfe001": "No user found",
     "MYBnfe002": "No users found",
