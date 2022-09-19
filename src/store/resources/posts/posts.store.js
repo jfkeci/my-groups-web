@@ -4,6 +4,7 @@ import {
   togglePollOptionVote,
   createCommunityPost,
   toggleEventUser,
+  togglePostLike,
 } from "./posts.reducers";
 
 export default {
@@ -46,6 +47,7 @@ export default {
     togglePollOptionVote,
     createCommunityPost,
     toggleEventUser,
+    togglePostLike,
   },
   getters: {
     getPost: (state) => state.post,

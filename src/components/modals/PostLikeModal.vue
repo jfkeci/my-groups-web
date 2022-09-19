@@ -2,24 +2,24 @@
   <div>
     <b-button-group>
       <b-button size="sm">
-        <b-icon icon="hand-thumbs-up" aria-hidden="true"></b-icon>
+        <b-icon icon="hand-thumbs-up-fill" aria-hidden="true"></b-icon>
       </b-button>
       <b-button
         size="sm"
         id="show-btn"
-        @click="$bvModal.show(`user-likes-modal-${id ?? ''}`)"
+        @click="$bvModal.show(`user-likes-modal-${post.id ?? ''}`)"
       >
         <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
       </b-button>
     </b-button-group>
 
-    <b-modal :id="`user-likes-modal-${id ?? ''}`" hide-footer>
+    <b-modal :id="`user-likes-modal-${post.id ?? ''}`" hide-footer>
       <template #modal-title> {{ $t("postLikes") }} </template>
-      <LikedUsersList />
+      <LikedUsersList :postLikes="post.post_likes" />
       <b-button
         class="mt-3"
         block
-        @click="$bvModal.hide(`user-likes-modal-${id ?? ''}`)"
+        @click="$bvModal.hide(`user-likes-modal-${post.id ?? ''}`)"
       >
         {{ $t("close") }}
       </b-button>
@@ -34,7 +34,15 @@ export default {
   components: {
     LikedUsersList,
   },
-  props: { id: String },
+  props: { post: { type: Object, required: true } },
+  methods: {
+    togglePostLike() {
+      this.$store.dispatch("togglePostLike", {
+        post: Number(this.post.id),
+        user: Number(this.$store.getters.getUsrer),
+      });
+    },
+  },
 };
 </script>
 

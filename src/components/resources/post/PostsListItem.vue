@@ -23,6 +23,7 @@
 
       <template #footer>
         <div class="d-flex align-items-center">
+          <PostLikeModal :post="post" class="mr-5" />
           <small class="ml-1">
             <b>{{ $t(post.type.toUpperCase()) }}</b>
           </small>
@@ -39,6 +40,7 @@
 import PollPostListItemStructure from "./poll-post/PollPostListItemStructure.vue";
 import EventPostListItemStructure from "./event-post/EventPostListItemStructure.vue";
 import PostCommentsList from "./post-comments/PostCommentsList.vue";
+import PostLikeModal from "../../modals/PostLikeModal.vue";
 
 export default {
   name: "PostsListItem",
@@ -46,6 +48,7 @@ export default {
     PollPostListItemStructure,
     EventPostListItemStructure,
     PostCommentsList,
+    PostLikeModal,
   },
   props: {
     post: {

@@ -153,3 +153,27 @@ export const togglePollOptionVote = async ({ commit }, data) => {
     }
   }
 };
+
+/**
+ * user: number;
+ * post: number;
+ */
+export const togglePostLike = async ({ commit }, data) => {
+  try {
+    const res = await axios.post(`/post-likes/toggle-post-like`, data);
+
+    if (res.status == 200) {
+      commit("setPosts", res.data);
+    }
+  } catch (err) {
+    console.log("getPostComments.ERR", err);
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
+    }
+  }
+};

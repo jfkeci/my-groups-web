@@ -106,8 +106,6 @@ export default {
   async mounted() {
     const createdBy = Number(this.$store.getters.getUser);
 
-    console.log(`created.createdBy`, createdBy);
-
     this.isUserCommentOwner = await isUserCommentOwner({
       id: Number(this.comment.id),
       createdBy,

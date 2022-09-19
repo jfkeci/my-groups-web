@@ -22,7 +22,7 @@ Vue.mixin(viewMixin);
 Vue.mixin(authMixin);
 Vue.mixin(messageMixin);
 
-Vue.prototype.$dbg = process.env.VUE_APP_DBG_MODE ? true : false;
+Vue.prototype.$dbg = JSON.stringify(process.env.VUE_APP_DBG_MODE);
 
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 

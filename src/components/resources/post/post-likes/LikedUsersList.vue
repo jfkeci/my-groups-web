@@ -1,29 +1,15 @@
 <template>
   <div>
-    <b-list-group>
-      <b-list-group-item class="d-flex align-items-center">
+    <b-list-group v-if="postLikes.length">
+      <b-list-group-item
+        class="d-flex align-items-center"
+        v-for="like in postLikes"
+        :key="like.id"
+      >
         <b-avatar class="mr-3"></b-avatar>
-        <span class="mr-auto">J. Circlehead</span>
-        <b-badge>5</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center">
-        <b-avatar variant="primary" text="BV" class="mr-3"></b-avatar>
-        <span class="mr-auto">BootstrapVue</span>
-        <b-badge>12</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center">
-        <b-avatar
-          variant="info"
-          src="https://placekitten.com/300/300"
-          class="mr-3"
-        ></b-avatar>
-        <span class="mr-auto">Super Kitty</span>
-        <b-badge>9</b-badge>
-      </b-list-group-item>
-      <b-list-group-item class="d-flex align-items-center">
-        <b-avatar variant="success" icon="people-fill" class="mr-3"></b-avatar>
-        <span class="mr-auto">ACME group</span>
-        <b-badge>7</b-badge>
+        <span class="mr-auto">
+          {{ `${like.users.firstName} ${like.users.lastName}` }}
+        </span>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -32,6 +18,12 @@
 <script>
 export default {
   name: "LikedUsersList",
+  props: {
+    postLikes: {
+      type: Array,
+      default: () => [],
+    },
+  },
 };
 </script>
 
