@@ -8,7 +8,16 @@
       >
         <span class="mr-auto">
           {{ option.option }}
+          <b-button
+            @click="toggleOptionVote(option.id, option.poll)"
+            class="ml-3 mr-3"
+            variant="success"
+            size="sm"
+          >
+            <small>{{ $t("choose") }}</small>
+          </b-button>
         </span>
+
         <b-badge
           id="show-btn"
           :variant="
@@ -18,10 +27,8 @@
           "
           @click="$bvModal.show(`poll-votes-modal-${option.id ?? ''}`)"
           >{{
-            option.poll_option_votes.some((v) => v.users.id == currentUser)
-              ? `${$t("youAnd")} ${option.poll_option_votes.length - 1} ${$t(
-                  "user"
-                )}`
+            option.poll_option_votes.length == 1
+              ? `${option.poll_option_votes.length} ${$t("user")}`
               : `${option.poll_option_votes.length} ${$t("users")}`
           }}
         </b-badge>
@@ -64,6 +71,15 @@ export default {
   computed: {
     currentUser() {
       return this.$store.getters.getUser;
+    },
+  },
+  methods: {
+    toggleOptionVote(optionId, poll) {
+      this.$store.dispatch("togglePollOptionVote", {
+        user: Number(this.$store.getters.getUser),
+        option: Number(optionId),
+        poll: Number(poll),
+      });
     },
   },
 };

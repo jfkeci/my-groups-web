@@ -9,32 +9,35 @@
     ></b-form-datepicker>
 
     <b-list-group>
-      <b-list-group-item
-        class="d-flex align-items-left"
-        @click="$bvModal.show(`event-users-modal-${post.id ?? ''}`)"
-      >
-        <b-badge
+      <b-list-group-item class="d-flex align-items-left">
+        <b-button
           id="show-btn"
           :variant="
-            post.event_users.some((eu) => eu.id == currentUser)
-              ? 'success'
-              : 'primary'
+            post.event_users.some((eu) => eu.users.id == currentUser)
+              ? `primary`
+              : `warning`
           "
           @click="$bvModal.show(`event-users-modal-${post.id ?? ''}`)"
         >
-          {{ post.event_users.length }}
-        </b-badge>
+          <b>
+            {{ post.event_users.length }}
+            <span>
+              {{ post.event_users.length == 1 ? $t("user") : $t("users") }}
+            </span>
+          </b>
+        </b-button>
 
-        <span
-          @click="$bvModal.show(`event-users-modal-${post.id ?? ''}`)"
-          class="ml-2"
+        <b-button
+          class="ml-3 mr-3"
+          :variant="
+            post.event_users.some((eu) => eu.users.id == currentUser)
+              ? `danger`
+              : `success`
+          "
+          @click="toggleEventUser(post.id)"
         >
-          {{
-            post.event_users.length > 1
-              ? $t("usersCommingToEvent")
-              : $t("userCommingToEvent")
-          }}
-        </span>
+          Dolazim
+        </b-button>
 
         <b-modal
           v-if="post.event_users.length"
@@ -77,6 +80,14 @@ export default {
   computed: {
     currentUser() {
       return this.$store.getters.getUser;
+    },
+  },
+  methods: {
+    toggleEventUser(postId) {
+      this.$store.dispatch("toggleEventUser", {
+        user: Number(this.$store.getters.getUser),
+        event: Number(postId),
+      });
     },
   },
 };

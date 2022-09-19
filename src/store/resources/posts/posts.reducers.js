@@ -104,3 +104,52 @@ export const createCommunityPost = async ({ commit }, data) => {
   }
   commit("setLoading", false);
 };
+
+/**
+ * event: number;
+ * user: number;
+ */
+export const toggleEventUser = async ({ commit }, data) => {
+  try {
+    const res = await axios.post(`/event-users/toggle-event-user`, data);
+
+    if (res.status == 200) {
+      commit("setPosts", res.data);
+    }
+  } catch (err) {
+    console.log("getPostComments.ERR", err);
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
+    }
+  }
+};
+
+/**
+ * option: number;
+ * user: number;
+ * poll: number;
+ */
+export const togglePollOptionVote = async ({ commit }, data) => {
+  try {
+    const res = await axios.post(`/poll-options/toggle-poll-option-vote`, data);
+
+    if (res.status == 200) {
+      commit("setPosts", res.data);
+    }
+  } catch (err) {
+    console.log("getPostComments.ERR", err);
+    if (err.response.status > 299) {
+      commit("setMessage", {
+        text:
+          i18n.t(`errors.${err.response.data.message}`) ??
+          err.response.data.message,
+        type: "danger",
+      });
+    }
+  }
+};

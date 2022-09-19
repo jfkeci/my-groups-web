@@ -1,7 +1,9 @@
 import {
   fetchUserPostsForAllCommunities,
   fetchUserCommunityPosts,
+  togglePollOptionVote,
   createCommunityPost,
+  toggleEventUser,
 } from "./posts.reducers";
 
 export default {
@@ -41,7 +43,9 @@ export default {
   actions: {
     fetchUserPostsForAllCommunities,
     fetchUserCommunityPosts,
+    togglePollOptionVote,
     createCommunityPost,
+    toggleEventUser,
   },
   getters: {
     getPost: (state) => state.post,

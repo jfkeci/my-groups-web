@@ -97,6 +97,8 @@
   "removeUserFromCommunity": "Remove user from community",
   "communityUsers": "Community users",
   "searchAllUsersOnPlatform": "Search all users on platform",
+  "choose": "Choose",
+  "korisnika": "Users",
   "errors": {
     "MYBnfe001": "No user found",
     "MYBnfe002": "No users found",

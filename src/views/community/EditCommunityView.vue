@@ -95,7 +95,10 @@
 
       <hr />
 
-      <CommunityUserManagement />
+      <CommunityUserManagement
+        @user-added-to-community="communityUsersUpdated"
+        @user-removed-from-community="communityUsersUpdated"
+      />
     </div>
 
     <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
@@ -129,20 +132,15 @@ export default {
         this.$store.commit("setView", "/dashboard");
       }
 
+      await this.$store.dispatch(
+        "fetchCommunityUsers",
+        this.$route.params.communityId
+      );
+
       await this.$store.dispatch("isUserCommunityMember", communityAndUser);
       await this.$store.dispatch("isUserCommunityAdmin", communityAndUser);
       await this.$store.dispatch(
         "fetchCommunity",
-        this.$route.params.communityId
-      );
-
-      await this.$store.dispatch(
-        "fetchCommunityUsers",
-        this.$route.params.communityId
-      );
-
-      await this.$store.dispatch(
-        "fetchCommunityUsers",
         this.$route.params.communityId
       );
     } else {
@@ -177,6 +175,9 @@ export default {
     isCurrentUser(userId) {
       return userId == this.$store.getters.getUser;
     },
+    communityUsersUpdated() {
+      console.log("communityUsersUpdated");
+    },
     formattedDate(date) {
       const formatted = new Date(date);
 
@@ -188,6 +189,11 @@ export default {
     },
     removeUserFromCommunity(userId) {
       console.log({
+        user: userId,
+        community: Number(this.$route.params.communityId),
+      });
+
+      this.$store.dispatch("removeUserFromCommunity", {
         user: userId,
         community: Number(this.$route.params.communityId),
       });

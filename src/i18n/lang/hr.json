@@ -98,6 +98,8 @@
   "removeUserFromCommunity": "Izbaci korisnika iz zajednice",
   "communityUsers": "Korisnici zajednice",
   "searchAllUsersOnPlatform": "Pretraži korisnike na platformi",
+  "choose": "Odaberi",
+  "korisnika": "Korisnika",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",

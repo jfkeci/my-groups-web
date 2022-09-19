@@ -44,6 +44,18 @@
           >
             {{ $t("addUserToCommunity") }}
           </b-button>
+
+          <b-button
+            @click="addUserToCommunity(user.id)"
+            v-if="
+              user.communities.some(
+                (c) => c == Number($route.params.communityId)
+              )
+            "
+            variant="danger"
+          >
+            {{ $t("removeUserFromCommunity") }}
+          </b-button>
           <!-- <b-badge>5</b-badge> -->
         </b-list-group-item>
       </b-list-group>
@@ -80,7 +92,20 @@ export default {
         community: Number(this.$route.params.communityId),
       });
 
+      this.$store.dispatch("addUserToCommunity");
+
       this.$emit("user-added-to-community");
+    },
+
+    removeUserFromCommunity(userId) {
+      console.log({
+        user: userId,
+        community: Number(this.$route.params.communityId),
+      });
+
+      this.$store.dispatch("removeUserFromCommunity");
+
+      this.$emit("user-removed-from-community");
     },
   },
   watch: {
