@@ -79,15 +79,20 @@
           <span class="mr-auto">
             {{ `${user.firstName} ${user.lastName}` }}
             <!-- isUserCommunityAdmin || isUserSuperAdmin -->
-            <b-button
-              v-if="true"
-              variant="danger"
-              class="ml-3"
-              size="sm"
-              @click="removeUserFromCommunity(user.id)"
-            >
-              {{ $t("removeFromCommunity") }}
-            </b-button>
+
+            <ConfirmationModal
+              :buttonText="$t('removeFromCommunity')"
+              :title="$t('removeUserConfirmation')"
+              action="removeUserFromCommunity"
+              :id="`remove-user-${user.id}`"
+              :confirmText="$t('remove')"
+              :buttonVariant="'danger'"
+              icon="trash"
+              :data="{
+                user: Number(user.id),
+                community: Number($route.params.communityId),
+              }"
+            />
           </span>
           <b-badge>{{ formattedDate(user.createdAt) }}</b-badge>
         </b-list-group-item>
@@ -109,10 +114,11 @@
 
 <script>
 import CommunityUserManagement from "../../components/resources/user/CommunityUserManagement.vue";
+import ConfirmationModal from "../../components/modals/ConfirmationModal.vue";
 
 export default {
   name: "EditCommunityView",
-  components: { CommunityUserManagement },
+  components: { CommunityUserManagement, ConfirmationModal },
   data() {
     return {
       form: {
@@ -189,7 +195,7 @@ export default {
     },
     removeUserFromCommunity(userId) {
       this.$store.dispatch("removeUserFromCommunity", {
-        user: userId,
+        user: Number(userId),
         community: Number(this.$route.params.communityId),
       });
     },
