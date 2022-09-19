@@ -100,10 +100,7 @@
 
       <hr />
 
-      <CommunityUserManagement
-        @user-added-to-community="communityUsersUpdated"
-        @user-removed-from-community="communityUsersUpdated"
-      />
+      <CommunityUserManagement />
     </div>
 
     <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
@@ -137,12 +134,10 @@ export default {
       if (!communityAndUser.user) {
         this.$store.commit("setView", "/dashboard");
       }
-
       await this.$store.dispatch(
         "fetchCommunityUsers",
         this.$route.params.communityId
       );
-
       await this.$store.dispatch("isUserCommunityMember", communityAndUser);
       await this.$store.dispatch("isUserCommunityAdmin", communityAndUser);
       await this.$store.dispatch(
@@ -175,6 +170,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      console.log(this.form);
       this.$store.dispatch("updateCommunity", this.form);
     },
     isCurrentUser(userId) {
