@@ -28,11 +28,8 @@ export const addUserToCommunity = async ({ commit }, data) => {
   try {
     const res = await axios.post(`/community-users`, data);
 
-    if (res.status == 200 && res.data.length) {
-      commit("setMessage", {
-        text: i18n.t("User successfully removed from communtiy"),
-        type: "danger",
-      });
+    if (res.status == 200) {
+      commit("setCommunityUsers", res.data);
     } else {
       commit("setMessage", {
         text: i18n.t("Failed to add user to community"),
@@ -50,24 +47,24 @@ export const addUserToCommunity = async ({ commit }, data) => {
 };
 
 export const removeUserFromCommunity = async ({ commit }, data) => {
-  try {
-    const res = await axios.delete(`/community-users`, data);
+  console.log("removeUserFromCommunity.data", data);
 
-    if (res.status == 200 && res.data.length) {
-      commit("setMessage", {
-        text: i18n.t("User successfully removed from communtiy"),
-        type: "danger",
-      });
+  try {
+    const res = await axios.post(`/community-users/delete`, data);
+
+    if (res.status == 200) {
+      commit("setCommunityUsers", res.data);
     } else {
       commit("setMessage", {
-        text: i18n.t("Failed to add user to community"),
+        text: i18n.t("Failed to remove user from communtiy"),
         type: "danger",
       });
     }
   } catch (err) {
     console.log("removeUserFromCommunity.ERR", err);
+
     commit("setMessage", {
-      text: i18n.t("errors.MYBnfe016"), // no community found
+      text: err.message,
       type: "danger",
     });
   }
