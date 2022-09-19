@@ -55,7 +55,6 @@ export default {
   watch: {
     $route: {
       handler: function () {
-        console.log(this.$route.params);
         if (this.$route.params.communityId) {
           this.$store.dispatch(
             "fetchCommunity",

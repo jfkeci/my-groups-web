@@ -69,9 +69,6 @@ export default {
     },
   },
   watch: {
-    isLoggedIn() {
-      console.log("this.isLoggedIn", this.isLoggedIn);
-    },
     view() {
       if (this.view) {
         this.$router.push(this.view);

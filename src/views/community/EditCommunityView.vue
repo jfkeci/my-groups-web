@@ -175,14 +175,10 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.form);
       this.$store.dispatch("updateCommunity", this.form);
     },
     isCurrentUser(userId) {
       return userId == this.$store.getters.getUser;
-    },
-    communityUsersUpdated() {
-      console.log("communityUsersUpdated");
     },
     formattedDate(date) {
       const formatted = new Date(date);

@@ -96,14 +96,10 @@ export default {
     },
 
     removeUserFromCommunity(userId) {
-      console.log({
-        user: userId,
+      this.$store.dispatch("removeUserFromCommunity", {
+        user: Number(userId),
         community: Number(this.$route.params.communityId),
       });
-
-      this.$store.dispatch("removeUserFromCommunity");
-
-      this.$emit("user-removed-from-community");
     },
   },
   watch: {

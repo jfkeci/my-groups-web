@@ -24,6 +24,11 @@ export default {
       default: () => [],
     },
   },
+  watch: {
+    postLikes() {
+      console.log("LikedUsersList.postlikes", this.postLikes);
+    },
+  },
 };
 </script>
 

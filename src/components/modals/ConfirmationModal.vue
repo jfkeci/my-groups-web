@@ -45,8 +45,6 @@ export default {
   },
   methods: {
     async doAction() {
-      console.log("ConfirmationModal.doAction.data", this.data);
-
       if (this.data) {
         await this.$store.dispatch(this.action, this.data);
       } else {
