@@ -94,6 +94,10 @@
   "unsuccessfullCommunityUpdate": "Neuspješno ažuriranje zajednice",
   "successfullCommunityUpdate": "Zajednica uspješno ažurirana",
   "delete": "Obriši",
+  "addUserToCommunity": "Dodaj korisnika u zajednicu",
+  "removeUserFromCommunity": "Izbaci korisnika iz zajednice",
+  "communityUsers": "Korisnici zajednice",
+  "searchAllUsersOnPlatform": "Pretraži korisnike na platformi",
   "errors": {
     "MYBnfe001": "Korisnik nije pronađen",
     "MYBnfe002": "Korisnici nisu pronađeni",

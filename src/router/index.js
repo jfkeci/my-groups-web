@@ -33,7 +33,7 @@ const routes = [
     component: UserProfileView,
   },
   {
-    name: "dashboard",
+    name: "community-dashboard",
     component: DashboardView,
     path: "/dashboard/:communityId",
   },

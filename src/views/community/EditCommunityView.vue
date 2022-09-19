@@ -8,7 +8,7 @@
       >
         <b-form-input
           id="input-edit-community-title"
-          v-if="isUserCommunityAdmin"
+          v-if="isUserCommunityAdmin || isUserSuperAdmin"
           :placeholder="$t('Title')"
           v-model="form.title"
           required
@@ -16,7 +16,7 @@
 
         <b-form-input
           id="input-edit-community-title-disabled"
-          v-if="!isUserCommunityAdmin"
+          v-if="!isUserCommunityAdmin || isUserSuperAdmin"
           :placeholder="$t('Title')"
           v-model="form.title"
           disabled
@@ -31,7 +31,7 @@
         <b-form-input
           id="input-edit-community-description"
           :placeholder="$t('description')"
-          v-if="isUserCommunityAdmin"
+          v-if="isUserCommunityAdmin || isUserSuperAdmin"
           v-model="form.description"
           required
         ></b-form-input>
@@ -39,14 +39,14 @@
         <b-form-input
           id="input-edit-community-description-disabled"
           :placeholder="$t('description')"
-          v-if="!isUserCommunityAdmin"
+          v-if="!isUserCommunityAdmin || isUserSuperAdmin"
           v-model="form.description"
           disabled
         ></b-form-input>
       </b-form-group>
 
       <b-button
-        v-if="isUserCommunityAdmin"
+        v-if="isUserCommunityAdmin || isUserSuperAdmin"
         variant="primary"
         type="submit"
         block
@@ -55,7 +55,7 @@
       </b-button>
 
       <b-button
-        v-if="!isUserCommunityAdmin"
+        v-if="!isUserCommunityAdmin || isUserSuperAdmin"
         variant="primary"
         type="submit"
         disabled
@@ -67,7 +67,7 @@
 
     <div class="mt-3" v-if="communityUsers && communityUsers.length">
       <hr />
-      <h3 class="mb-3 mt-1">Community users</h3>
+      <h3 class="mb-3 mt-1">{{ $t("communityUsers") }}</h3>
       <b-list-group>
         <b-list-group-item
           class="d-flex align-items-center"
@@ -75,14 +75,16 @@
           :key="user.id"
         >
           <b-avatar class="mr-3"></b-avatar>
+
           <span class="mr-auto">
             {{ `${user.firstName} ${user.lastName}` }}
-
+            <!-- isUserCommunityAdmin || isUserSuperAdmin -->
             <b-button
-              v-if="isUserCommunityAdmin"
+              v-if="true"
               variant="danger"
               class="ml-3"
               size="sm"
+              @click="removeUserFromCommunity(user.id)"
             >
               {{ $t("removeFromCommunity") }}
             </b-button>
@@ -90,6 +92,10 @@
           <b-badge>{{ formattedDate(user.createdAt) }}</b-badge>
         </b-list-group-item>
       </b-list-group>
+
+      <hr />
+
+      <CommunityUserManagement />
     </div>
 
     <b-card class="mt-3" header="Form Data Result" v-if="$dbg">
@@ -99,8 +105,11 @@
 </template>
 
 <script>
+import CommunityUserManagement from "../../components/resources/user/CommunityUserManagement.vue";
+
 export default {
   name: "EditCommunityView",
+  components: { CommunityUserManagement },
   data() {
     return {
       form: {
@@ -163,6 +172,7 @@ export default {
   methods: {
     onSubmit() {
       console.log(this.form);
+      this.$store.dispatch("updateCommunity", this.form);
     },
     isCurrentUser(userId) {
       return userId == this.$store.getters.getUser;
@@ -175,6 +185,12 @@ export default {
       )}: ${formatted.getDay()}.${formatted.getMonth()}.${formatted.getFullYear()}.`;
 
       return dateString;
+    },
+    removeUserFromCommunity(userId) {
+      console.log({
+        user: userId,
+        community: Number(this.$route.params.communityId),
+      });
     },
   },
 };

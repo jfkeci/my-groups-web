@@ -5,6 +5,7 @@ import {
 } from "./community-users.reducers";
 import {
   fetchCommunity,
+  updateCommunity,
   createCommunity,
   isUserCommunityAdmin,
   isUserCommunityMember,
@@ -38,11 +39,12 @@ export default {
   },
   actions: {
     // Community reducer methods
-    fetchMemberCommunities,
-    isUserCommunityMember,
-    isUserCommunityAdmin,
-    createCommunity,
     fetchCommunity,
+    updateCommunity,
+    createCommunity,
+    isUserCommunityAdmin,
+    isUserCommunityMember,
+    fetchMemberCommunities,
     // Community-users reducer methods
     removeUserFromCommunity,
     fetchCommunityUsers,

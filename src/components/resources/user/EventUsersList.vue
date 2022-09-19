@@ -1,12 +1,9 @@
 <template>
   <div v-if="event_users.length">
     <b-list-group v-for="event_user in event_users" :key="event_user.id">
-      <b-list-group-item
-        class="d-flex align-items-center"
-        :to="`/user/${event_user.users.id}`"
-      >
-        <b-avatar class="mr-3" :to="`/user/${event_user.users.id}`"> </b-avatar>
-        <span class="mr-auto" :to="`/user/${event_user.users.id}`">
+      <b-list-group-item class="d-flex align-items-center">
+        <b-avatar class="mr-3"> </b-avatar>
+        <span class="mr-auto">
           {{ `${event_user.users.firstName} ${event_user.users.lastName}` }}
         </span>
         <b-badge v-if="event_user.users.id == currentUser" variant="success">
