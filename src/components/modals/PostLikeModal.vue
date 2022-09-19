@@ -10,9 +10,10 @@
       </b-button>
 
       <b-button
-        size="sm"
-        id="show-btn"
         @click="$bvModal.show(`user-likes-modal-${post.id ?? ''}`)"
+        v-if="post.post_likes.length"
+        id="show-btn"
+        size="sm"
       >
         <b-icon icon="three-dots-vertical" aria-hidden="true"></b-icon>
       </b-button>
@@ -25,7 +26,6 @@
 
       <b-button
         @click="$bvModal.hide(`user-likes-modal-${post.id ?? ''}`)"
-        v-if="post.post_likes.length"
         class="mt-3"
         block
       >
