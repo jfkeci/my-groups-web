@@ -6,6 +6,7 @@ import UserLoginView from "../views/auth/UserLoginView.vue";
 import CreatePostView from "../views/post/CreatePostView.vue";
 import UserProfileView from "../views/auth/UserProfileView.vue";
 import UserRegisterView from "../views/auth/UserRegisterView.vue";
+import CommunityInfoView from "../views/community/CommunityInfoView.vue";
 import EditCommunityView from "../views/community/EditCommunityView.vue";
 import CreateCommunityView from "../views/community/CreateCommunityView.vue";
 
@@ -61,6 +62,11 @@ const routes = [
     path: "/update-community/:communityId",
     component: EditCommunityView,
     name: "update-community",
+  },
+  {
+    path: "/community/:communityId/info",
+    component: CommunityInfoView,
+    name: "community-info-view",
   },
 ];
 
