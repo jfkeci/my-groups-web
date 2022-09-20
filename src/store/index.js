@@ -40,14 +40,13 @@ const store = new Vuex.Store({
     setLoading(state, loading) {
       state.loading = loading;
     },
-    handleError,
   },
   getters: {
     getMessage: (state) => state.message,
     getLoading: (state) => state.loading,
     getView: (state) => state.view,
   },
-  actions: {},
+  actions: { handleError },
 });
 
 export default store;

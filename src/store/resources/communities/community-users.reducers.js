@@ -1,7 +1,10 @@
 import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
-export const fetchCommunityUsers = async ({ commit }, communityId) => {
+export const fetchCommunityUsers = async (
+  { commit, dispatch },
+  communityId
+) => {
   try {
     const res = await axios.get(`/community-users/${communityId}`);
 
@@ -18,11 +21,11 @@ export const fetchCommunityUsers = async ({ commit }, communityId) => {
   } catch (err) {
     console.log("fetchCommunityUsers.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
-export const addUserToCommunity = async ({ commit }, data) => {
+export const addUserToCommunity = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.post(`/community-users`, data);
 
@@ -37,12 +40,12 @@ export const addUserToCommunity = async ({ commit }, data) => {
   } catch (err) {
     console.log("addUserToCommunity.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
 
-export const removeUserFromCommunity = async ({ commit }, data) => {
+export const removeUserFromCommunity = async ({ commit, dispatch }, data) => {
   console.log("removeUserFromCommunity.data", data);
 
   try {
@@ -59,7 +62,7 @@ export const removeUserFromCommunity = async ({ commit }, data) => {
   } catch (err) {
     console.log("removeUserFromCommunity.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };

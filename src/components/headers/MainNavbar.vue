@@ -38,6 +38,12 @@
               <em>{{ $t("User") }}</em>
             </template>
 
+            <b-dropdown-item
+              v-if="isLoggedIn && isUserSuperAdmin"
+              to="/create-super-admin-user"
+            >
+              Create super admin
+            </b-dropdown-item>
             <b-dropdown-item v-if="isLoggedIn" @click="logout">
               {{ $t("Logout") }}
             </b-dropdown-item>

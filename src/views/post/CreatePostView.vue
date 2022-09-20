@@ -148,8 +148,8 @@ export default {
   data() {
     return {
       form: {
-        body: "Opis nove informativne objave",
-        title: "Nova informativna objava",
+        body: "",
+        title: "",
         date: null,
         image: null,
         type: "info",

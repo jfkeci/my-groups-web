@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getUser = async ({ commit }, userId) => {
+export const getUser = async ({ commit, dispatch }, userId) => {
   try {
     let user;
 
@@ -16,6 +16,6 @@ export const getUser = async ({ commit }, userId) => {
   } catch (err) {
     console.log("getUser.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };

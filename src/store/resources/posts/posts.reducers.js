@@ -1,7 +1,7 @@
 import axios from "axios";
 import { i18n } from "../../../i18n/i18n";
 
-export const fetchUserCommunityPosts = async ({ commit }, data) => {
+export const fetchUserCommunityPosts = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.get(
       `/user/${data.userId}/posts/${data.communityId}`
@@ -27,12 +27,15 @@ export const fetchUserCommunityPosts = async ({ commit }, data) => {
   } catch (err) {
     console.log("fetchUserCommunityPosts.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
 
-export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
+export const fetchUserPostsForAllCommunities = async (
+  { commit, dispatch },
+  userId
+) => {
   try {
     const res = await axios.get(`/user/${userId}/posts`);
 
@@ -54,12 +57,12 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
   } catch (err) {
     console.log("fetchUserPostsForAllCommunities.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
 
-export const createCommunityPost = async ({ commit }, data) => {
+export const createCommunityPost = async ({ commit, dispatch }, data) => {
   console.log("createCommunityPost.data", data);
   try {
     const res = await axios.post(`/posts`, data);
@@ -82,7 +85,7 @@ export const createCommunityPost = async ({ commit }, data) => {
   } catch (err) {
     console.log("fetchUserPostsForAllCommunities.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -91,7 +94,7 @@ export const createCommunityPost = async ({ commit }, data) => {
  * event: number;
  * user: number;
  */
-export const toggleEventUser = async ({ commit }, data) => {
+export const toggleEventUser = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.post(`/event-users/toggle-event-user`, data);
 
@@ -101,7 +104,7 @@ export const toggleEventUser = async ({ commit }, data) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
@@ -110,7 +113,7 @@ export const toggleEventUser = async ({ commit }, data) => {
  * user: number;
  * poll: number;
  */
-export const togglePollOptionVote = async ({ commit }, data) => {
+export const togglePollOptionVote = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.post(`/poll-options/toggle-poll-option-vote`, data);
 
@@ -120,7 +123,7 @@ export const togglePollOptionVote = async ({ commit }, data) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
@@ -128,7 +131,7 @@ export const togglePollOptionVote = async ({ commit }, data) => {
  * user: number;
  * post: number;
  */
-export const togglePostLike = async ({ commit }, data) => {
+export const togglePostLike = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.post(`/post-likes/toggle-post-like`, data);
 
@@ -138,6 +141,6 @@ export const togglePostLike = async ({ commit }, data) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createPostComment = async ({ commit }, data) => {
+export const createPostComment = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.post(`/comments/${data.post}`, {
       ...data,
@@ -12,11 +12,11 @@ export const createPostComment = async ({ commit }, data) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
-export const updatePostComment = async ({ commit }, data) => {
+export const updatePostComment = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.patch(
       `/comments/${data.post}/comment/${data.comment}`,
@@ -29,11 +29,11 @@ export const updatePostComment = async ({ commit }, data) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
-export const deletePostComment = async ({ commit }, params) => {
+export const deletePostComment = async ({ commit, dispatch }, params) => {
   try {
     let deletedPost;
 
@@ -50,11 +50,11 @@ export const deletePostComment = async ({ commit }, params) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
-export const getPostComments = async ({ commit }, postId) => {
+export const getPostComments = async ({ dispatch }, postId) => {
   try {
     let postWithComments;
 
@@ -70,11 +70,11 @@ export const getPostComments = async ({ commit }, postId) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 
-export const getPostComment = async ({ commit }, params) => {
+export const getPostComment = async ({ dispatch }, params) => {
   try {
     let postComment;
 
@@ -92,7 +92,7 @@ export const getPostComment = async ({ commit }, params) => {
   } catch (err) {
     console.log("getPostComments.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
 

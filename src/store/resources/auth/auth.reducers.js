@@ -1,7 +1,7 @@
 import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
-export const registerUser = async ({ commit }, user) => {
+export const registerUser = async ({ commit, dispatch }, user) => {
   try {
     const res = await axios.post(`/auth/register`, user);
 
@@ -26,12 +26,12 @@ export const registerUser = async ({ commit }, user) => {
   } catch (err) {
     console.log("registerUser.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
 
-export const loginUser = async ({ commit }, loginData) => {
+export const loginUser = async ({ commit, dispatch }, loginData) => {
   console.log("loginData", loginData);
 
   try {
@@ -59,7 +59,7 @@ export const loginUser = async ({ commit }, loginData) => {
   } catch (err) {
     console.log("loginUser.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };

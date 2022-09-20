@@ -1,7 +1,10 @@
 import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
-export const fetchMemberCommunities = async ({ commit, getters }, userId) => {
+export const fetchMemberCommunities = async (
+  { commit, getters, dispatch },
+  userId
+) => {
   console.log("getters.getToken", getters.getToken);
 
   try {
@@ -27,7 +30,7 @@ export const fetchMemberCommunities = async ({ commit, getters }, userId) => {
   } catch (err) {
     console.log("fetchMemberCommunities.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -57,12 +60,12 @@ export const createCommunity = async (
   } catch (err) {
     console.log("createCommunity.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
 
-export const fetchCommunity = async ({ commit }, communityId) => {
+export const fetchCommunity = async ({ commit, dispatch }, communityId) => {
   try {
     const res = await axios.get(`/communities/${communityId}`);
 
@@ -77,7 +80,7 @@ export const fetchCommunity = async ({ commit }, communityId) => {
   } catch (err) {
     console.log("community.reducers.fetchCommunity.ERR", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -119,7 +122,7 @@ export const isUserCommunityMember = async ({ commit }, data) => {
   }
 };
 
-export const updateCommunity = async ({ commit }, data) => {
+export const updateCommunity = async ({ commit, dispatch }, data) => {
   try {
     const res = await axios.patch(`/communities/${data.communityId}`, {
       user: data.userId,
@@ -142,6 +145,6 @@ export const updateCommunity = async ({ commit }, data) => {
   } catch (err) {
     console.log("updateCommunity.err", err);
 
-    commit("handleError", err);
+    dispatch("handleError", err);
   }
 };
