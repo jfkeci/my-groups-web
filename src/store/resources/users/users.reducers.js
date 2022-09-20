@@ -21,9 +21,13 @@ export const getUser = async ({ dispatch }, userId) => {
 };
 
 export const getUserProfile = async ({ commit, dispatch }, data) => {
+  console.log("getUserProfile.data", data);
+
   let res;
+
   try {
     if (data.currentUser) {
+      console.log(`/user/${data.user}?currentUser=${data.currentUser}`);
       res = await axios.get(
         `/user/${data.user}?currentUser=${data.currentUser}`
       );
