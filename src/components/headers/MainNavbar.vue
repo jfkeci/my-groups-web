@@ -89,6 +89,8 @@ export default {
   methods: {
     logout() {
       this.$store.commit("setPosts", []);
+      this.$store.commit("setMemberCommunities", []);
+      this.$store.commit("setCommunityUsers", []);
       localStorage.removeItem("token");
       this.$store.commit("logout");
       this.$store.commit("setToken", false);
