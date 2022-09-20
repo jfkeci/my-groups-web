@@ -26,14 +26,8 @@ export const fetchUserCommunityPosts = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("fetchUserCommunityPosts.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -59,14 +53,8 @@ export const fetchUserPostsForAllCommunities = async ({ commit }, userId) => {
     }
   } catch (err) {
     console.log("fetchUserPostsForAllCommunities.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -93,14 +81,8 @@ export const createCommunityPost = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("fetchUserPostsForAllCommunities.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -118,14 +100,8 @@ export const toggleEventUser = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -143,14 +119,8 @@ export const togglePollOptionVote = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -167,13 +137,7 @@ export const togglePostLike = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };

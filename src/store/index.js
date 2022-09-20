@@ -7,6 +7,7 @@ import auth from "./resources/auth/auth.store.js";
 import posts from "./resources/posts/posts.store.js";
 import comments from "./resources/comments/comments.store.js";
 import communities from "./resources/communities/communities.store.js";
+import { handleError } from "./utils/error.util.js";
 
 const store = new Vuex.Store({
   modules: {
@@ -39,12 +40,14 @@ const store = new Vuex.Store({
     setLoading(state, loading) {
       state.loading = loading;
     },
+    handleError,
   },
   getters: {
     getMessage: (state) => state.message,
     getLoading: (state) => state.loading,
     getView: (state) => state.view,
   },
+  actions: {},
 });
 
 export default store;

@@ -25,14 +25,8 @@ export const registerUser = async ({ commit }, user) => {
     }
   } catch (err) {
     console.log("registerUser.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -64,14 +58,8 @@ export const loginUser = async ({ commit }, loginData) => {
     }
   } catch (err) {
     console.log("loginUser.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };

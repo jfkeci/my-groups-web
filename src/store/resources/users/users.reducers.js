@@ -1,4 +1,3 @@
-import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
 export const getUser = async ({ commit }, userId) => {
@@ -16,14 +15,7 @@ export const getUser = async ({ commit }, userId) => {
     return user;
   } catch (err) {
     console.log("getUser.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message ??
-          i18n.t(`errors.default`),
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };

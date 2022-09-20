@@ -17,10 +17,8 @@ export const fetchCommunityUsers = async ({ commit }, communityId) => {
     }
   } catch (err) {
     console.log("fetchCommunityUsers.ERR", err);
-    commit("setMessage", {
-      text: i18n.t("errors.MYBnfe016"), // no community found
-      type: "danger",
-    });
+
+    commit("handleError", err);
   }
 };
 
@@ -38,10 +36,8 @@ export const addUserToCommunity = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("addUserToCommunity.ERR", err);
-    commit("setMessage", {
-      text: i18n.t("errors.MYBnfe016"), // no community found
-      type: "danger",
-    });
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -63,10 +59,7 @@ export const removeUserFromCommunity = async ({ commit }, data) => {
   } catch (err) {
     console.log("removeUserFromCommunity.ERR", err);
 
-    commit("setMessage", {
-      text: err.message,
-      type: "danger",
-    });
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };

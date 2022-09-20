@@ -1,4 +1,3 @@
-import { i18n } from "../../../i18n/i18n";
 import axios from "axios";
 
 export const createPostComment = async ({ commit }, data) => {
@@ -12,14 +11,8 @@ export const createPostComment = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -35,14 +28,8 @@ export const updatePostComment = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -62,14 +49,8 @@ export const deletePostComment = async ({ commit }, params) => {
     return deletedPost;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -88,14 +69,8 @@ export const getPostComments = async ({ commit }, postId) => {
     return postWithComments;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -116,14 +91,8 @@ export const getPostComment = async ({ commit }, params) => {
     return postComment;
   } catch (err) {
     console.log("getPostComments.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };
 
@@ -133,6 +102,6 @@ export const isUserCommentOwner = async (data) => {
 
     return res.data;
   } catch (err) {
-    console.log("getPostComments.ERR", err);
+    console.log("isUserCommentOwner.ERR", err);
   }
 };

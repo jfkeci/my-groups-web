@@ -26,14 +26,8 @@ export const fetchMemberCommunities = async ({ commit, getters }, userId) => {
     }
   } catch (err) {
     console.log("fetchMemberCommunities.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -62,14 +56,8 @@ export const createCommunity = async (
     }
   } catch (err) {
     console.log("createCommunity.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -80,24 +68,16 @@ export const fetchCommunity = async ({ commit }, communityId) => {
 
     if (res.status == 200 && res.data) {
       commit("setCommunity", res.data);
-      return res.data;
     } else {
       commit("setMessage", {
         text: i18n.t("noCommunityFound"),
         type: "danger",
       });
-      return null;
     }
   } catch (err) {
-    console.log("fetchCommunity.ERR", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+    console.log("community.reducers.fetchCommunity.ERR", err);
+
+    commit("handleError", err);
   }
   commit("setLoading", false);
 };
@@ -114,6 +94,7 @@ export const isUserCommunityAdmin = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("isUserCommunityAdmin.err", err);
+
     return false;
   }
 };
@@ -133,6 +114,7 @@ export const isUserCommunityMember = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("isUserCommunityMember.err", err);
+
     return false;
   }
 };
@@ -159,13 +141,7 @@ export const updateCommunity = async ({ commit }, data) => {
     }
   } catch (err) {
     console.log("updateCommunity.err", err);
-    if (err.response.status > 299) {
-      commit("setMessage", {
-        text:
-          i18n.t(`errors.${err.response.data.message}`) ??
-          err.response.data.message,
-        type: "danger",
-      });
-    }
+
+    commit("handleError", err);
   }
 };

@@ -55,7 +55,7 @@ const routes = [
   {
     path: "/create-post",
     component: CreatePostView,
-    name: "create-community-post",
+    name: "create-post",
   },
   {
     path: "/update-community/:communityId",
