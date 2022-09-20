@@ -60,16 +60,25 @@
         </b-modal>
       </b-list-group-item>
     </b-list-group>
+
+    <LocationMap
+      class="m-3"
+      v-if="post.location"
+      :center="post.location"
+      :markerPosition="post.location"
+    />
   </div>
 </template>
 
 <script>
 import EventUsersList from "../../user/EventUsersList.vue";
+import LocationMap from "../../../map/LocationMap.vue";
 
 export default {
   name: "EventPostListItemStructure",
   components: {
     EventUsersList,
+    LocationMap,
   },
   props: {
     post: {

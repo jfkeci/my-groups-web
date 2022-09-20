@@ -22,8 +22,8 @@ export default {
     LMarker,
   },
   props: {
-    center: null,
-    markerPosition: null,
+    center: { default: null },
+    markerPosition: { default: null },
   },
   data() {
     return {
