@@ -255,7 +255,9 @@ export default {
           ...this.form,
           createdBy,
           community: Number(
-            this.selectedCommunity ?? this.$route.params.communityId
+            this.form.community ??
+              this.selectedCommunity ??
+              this.$route.params.communityId
           ),
         };
       }
@@ -266,7 +268,9 @@ export default {
           createdBy,
           options: this.pollData.options.map((o) => ({ option: o.title })),
           community: Number(
-            this.selectedCommunity ?? this.$route.params.communityId
+            this.form.community ??
+              this.selectedCommunity ??
+              this.$route.params.communityId
           ),
         };
       }
