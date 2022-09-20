@@ -88,7 +88,9 @@ export default {
   },
   methods: {
     logout() {
+      this.$store.commit("setPosts", []);
       localStorage.removeItem("token");
+      this.$store.commit("logout");
       this.$store.commit("setToken", false);
       this.$store.commit("setView", "/login");
     },
