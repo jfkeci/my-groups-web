@@ -3,8 +3,12 @@
     <b-list-group>
       <b-list-group-item class="d-flex align-items-center">
         <b-avatar class="mr-3"></b-avatar>
-        <span class="mr-auto">J. Circlehead</span>
-        <b-badge>5</b-badge>
+        <span class="mr-auto">
+          {{ `${currentUserProfile.firstName} ${currentUserProfile.lastName}` }}
+        </span>
+        <b-badge>{{
+          `${$t("since")} ${formattedDate(currentUserProfile.createdAt)}`
+        }}</b-badge>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -27,6 +31,15 @@ export default {
     },
     currentUserProfile() {
       return this.$store.getters.getProfile;
+    },
+  },
+  methods: {
+    formattedDate(date) {
+      const formatted = new Date(date);
+
+      const dateString = `${formatted.getDay()}.${formatted.getMonth()}.${formatted.getFullYear()}.`;
+
+      return dateString;
     },
   },
 };

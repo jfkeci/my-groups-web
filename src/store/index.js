@@ -4,6 +4,7 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import auth from "./resources/auth/auth.store.js";
+import users from "./resources/users/users.store.js";
 import posts from "./resources/posts/posts.store.js";
 import comments from "./resources/comments/comments.store.js";
 import communities from "./resources/communities/communities.store.js";
@@ -12,6 +13,7 @@ import { handleError } from "./utils/error.util.js";
 const store = new Vuex.Store({
   modules: {
     auth,
+    users,
     posts,
     comments,
     communities,
