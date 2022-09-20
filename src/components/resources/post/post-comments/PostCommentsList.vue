@@ -14,8 +14,8 @@
 
     <b-button
       size="sm"
-      class="mt-2 ml-3 mr-3"
-      v-if="!showMore"
+      class="mt-2 mr-3"
+      v-if="!showMore && comments.length > 1"
       @click="showMore = true"
       block
     >
@@ -24,7 +24,7 @@
 
     <b-button
       size="sm"
-      class="mt-2 ml-3 mr-3"
+      class="mt-2 mr-3"
       v-if="showMore"
       @click="showMore = false"
       block

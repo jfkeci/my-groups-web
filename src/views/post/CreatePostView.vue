@@ -165,7 +165,7 @@ export default {
     }
 
     if (this.$route.params.communityId) {
-      this.selectedCommunity = this.$route.params.communityId;
+      this.selectedCommunity = Number(this.$route.params.communityId);
     }
   },
   computed: {
@@ -221,7 +221,7 @@ export default {
       this.validPollOptions = validPollOptions;
     },
     setSelectedCommunity(communityId) {
-      this.form.community = communityId;
+      this.form.community = Number(communityId);
     },
     createPost() {
       let newPostData;
@@ -234,7 +234,13 @@ export default {
       let createdBy = Number(this.$store.getters.getUser);
 
       if (this.form.type == "info" || this.form.type == "event") {
-        newPostData = { ...this.form, createdBy };
+        newPostData = {
+          ...this.form,
+          createdBy,
+          community: Number(
+            this.selectedCommunity ?? this.$route.params.communityId
+          ),
+        };
       }
 
       if (this.form.type == "poll") {
@@ -242,6 +248,9 @@ export default {
           ...this.form,
           createdBy,
           options: this.pollData.options.map((o) => ({ option: o.title })),
+          community: Number(
+            this.selectedCommunity ?? this.$route.params.communityId
+          ),
         };
       }
 
