@@ -11,6 +11,28 @@
         }}</b-badge>
       </b-list-group-item>
     </b-list-group>
+
+    <!-- <b-card
+      v-if="currentUserProfile.communities.length"
+      :title="$t('communities')"
+      class="mt-3"
+    >
+      <b-list-group>
+        <b-list-group-item
+          v-for="community in currentUserProfile.communities"
+          class="d-flex align-items-center"
+          :key="community.id"
+        >
+          <b-avatar class="mr-3"></b-avatar>
+          <span class="mr-auto">
+            {{ `${community.title}` }}
+          </span>
+          <b-badge>{{
+            `${$t("since")} ${formattedDate(currentUserProfile.createdAt)}`
+          }}</b-badge>
+        </b-list-group-item>
+      </b-list-group>
+    </b-card> -->
   </div>
 </template>
 
