@@ -85,6 +85,9 @@
             @set-event-date="setEventDate"
             v-if="form.type == 'event'"
           />
+
+          <LocationPicker @set-new-position="setLocation" class="mb-4" />
+
           <PollOptionsCreator
             @are-options-valid="pollOptionsValidity"
             @set-option-values="setPollData"
@@ -139,10 +142,12 @@
 <script>
 import EventDatePicker from "../../components/resources/post/event-post/EventDatePicker.vue";
 import PollOptionsCreator from "../../components/resources/post/poll-post/PollOptionsCreator.vue";
+import LocationPicker from "../../components/map/LocationPicker.vue";
 
 export default {
   name: "CreatePostView",
   components: {
+    LocationPicker,
     EventDatePicker,
     PollOptionsCreator,
   },
@@ -155,6 +160,7 @@ export default {
         image: null,
         type: "info",
         community: null,
+        location: null,
       },
       pollData: null,
       validPollOptions: false,
@@ -223,6 +229,12 @@ export default {
     },
     setSelectedCommunity(communityId) {
       this.form.community = Number(communityId);
+    },
+    setLocation(location) {
+      console.log("setLocation", location);
+      this.form.location = location;
+
+      console.log("setLocation", this.form.location);
     },
     createPost() {
       let newPostData;

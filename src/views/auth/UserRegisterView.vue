@@ -165,6 +165,14 @@ export default {
           ? { ...this.form, adminVoucher: this.$store.getters.getUser }
           : this.form
       );
+
+      this.form.username = "";
+      this.form.email = "";
+      this.form.password = "";
+      this.form.confirmPassword = "";
+      this.form.firstName = "";
+      this.form.lastName = "";
+      this.form.isAdmin = false;
     },
   },
 };

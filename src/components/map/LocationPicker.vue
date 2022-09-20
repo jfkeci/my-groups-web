@@ -50,7 +50,7 @@ export default {
     LControl,
   },
   props: {
-    markerPosition: null,
+    markerPosition: { type: Array, default: () => [46.16278, 16.8275] },
   },
   data() {
     return {

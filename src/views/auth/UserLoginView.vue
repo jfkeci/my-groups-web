@@ -73,6 +73,9 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       this.$store.dispatch("loginUser", this.form);
+
+      this.form.email = "";
+      this.form.password = "";
     },
   },
 };
