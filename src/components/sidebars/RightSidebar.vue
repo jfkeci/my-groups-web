@@ -16,7 +16,6 @@
         <b-col>
           <b-button
             :to="`/update-community/${this.$route.params.communityId}`"
-            v-if="isUserCommunityAdmin"
             variant="primary"
             class="mt-1"
             block
