@@ -88,7 +88,7 @@
 
           <LocationPicker
             @set-new-position="setLocation"
-            v-if="(form.type = 'event')"
+            v-if="form.type == 'event'"
             class="mb-4"
           />
 
