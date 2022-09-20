@@ -1,7 +1,7 @@
 <template>
   <div>
     <LMap
-      style="height: 300px"
+      style="height: 200px; width: 100%"
       :zoom="zoom"
       :center="center ?? [45.815399, 15.966568]"
     >

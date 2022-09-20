@@ -131,12 +131,12 @@ export default {
   data() {
     return {
       form: {
-        username: "jfkeci",
-        email: "jfkeci@gmail.com",
-        password: "test1234",
-        confirmPassword: "test1234",
-        firstName: "filip",
-        lastName: "kecilobas",
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        firstName: "",
+        lastName: "",
         isAdmin: false,
       },
     };
