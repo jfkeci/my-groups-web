@@ -47,11 +47,12 @@
             ></b-form-textarea>
           </b-form-group>
 
-          <!-- <b-form-group
+          <b-form-group
             label-for="create-post-input-4"
             id="create-post-input-group-4"
             :label="$t('image')"
             class="ml-5 mr-5"
+            v-if="form.type == 'info'"
           >
             <b-form-file
               :placeholder="$t('chooseOrDropImage')"
@@ -64,7 +65,7 @@
             <small class="mt-3" v-if="form.image">
               {{ $t("selectedImage") }}: {{ form.image ? form.image : "" }}
             </small>
-          </b-form-group> -->
+          </b-form-group>
 
           <b-form-group
             label-for="create-post-input-3"
