@@ -86,7 +86,11 @@
             v-if="form.type == 'event'"
           />
 
-          <LocationPicker @set-new-position="setLocation" class="mb-4" />
+          <LocationPicker
+            @set-new-position="setLocation"
+            v-if="(form.type = 'event')"
+            class="mb-4"
+          />
 
           <PollOptionsCreator
             @are-options-valid="pollOptionsValidity"
