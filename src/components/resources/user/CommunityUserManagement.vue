@@ -28,7 +28,7 @@
           <b-avatar class="mr-3"></b-avatar>
 
           <span class="mr-auto">
-            <p>
+            <p :to="`/profile/${user.id}`">
               {{ `${user.firstName} ${user.lastName}` }}
             </p>
           </span>

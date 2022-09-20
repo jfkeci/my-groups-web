@@ -73,11 +73,14 @@
           class="d-flex align-items-center"
           v-for="user in communityUsers"
           :key="user.id"
+          :to="`/profile/${user.id}`"
         >
           <b-avatar class="mr-3"></b-avatar>
 
           <span class="mr-auto">
-            {{ `${user.firstName} ${user.lastName}` }}
+            <p :to="`/profile/${user.id}`">
+              {{ `${user.firstName} ${user.lastName}` }}
+            </p>
             <!-- isUserCommunityAdmin || isUserSuperAdmin -->
 
             <ConfirmationModal

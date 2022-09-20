@@ -91,14 +91,13 @@ export const isUserCommunityAdmin = async ({ commit }, data) => {
 
     if (res.status == 200) {
       commit("setIsUserCommunityAdmin", res.data);
-      return res.data;
     } else {
-      return false;
+      commit("setIsUserCommunityAdmin", false);
     }
   } catch (err) {
     console.log("isUserCommunityAdmin.err", err);
 
-    return false;
+    commit("setIsUserCommunityAdmin", false);
   }
 };
 

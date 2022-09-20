@@ -41,7 +41,7 @@
           >
             <b-avatar class="mr-3"></b-avatar>
             <span class="mr-auto">{{
-              `${admin.users.firstName} ${admin.users.firstName}`
+              `${admin.users.firstName} ${admin.users.lastName}`
             }}</span>
             <b-badge>
               {{ `${$t("since")}: ${formattedDate(admin.createdAt)}` }}

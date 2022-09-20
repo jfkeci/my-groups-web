@@ -29,8 +29,8 @@ const routes = [
     component: UserRegisterView,
   },
   {
-    name: "profile",
-    path: "/profile",
+    name: "profile-view",
+    path: "/profile/:userId",
     component: UserProfileView,
   },
   {
