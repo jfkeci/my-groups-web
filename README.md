@@ -22,3 +22,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+## Heroku
+heroku git:remote -a my-groups-web
+git push heroku main:main

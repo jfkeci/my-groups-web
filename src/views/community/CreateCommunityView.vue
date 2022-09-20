@@ -39,8 +39,8 @@ export default {
   data() {
     return {
       form: {
-        title: "new-community",
-        description: "new-community",
+        title: "",
+        description: "",
       },
     };
   },
